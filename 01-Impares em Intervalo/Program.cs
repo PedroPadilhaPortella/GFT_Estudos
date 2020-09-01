@@ -7,7 +7,7 @@ namespace Impares_em_Intervalo
         static void Main(string[] args)
         {
             Console.Write("Entre com o valor Inicial e Final: ");
-            string[] valores = Console.ReadLine().Split();
+            string[] valores = Console.ReadLine().Split(' ');
             
             int inicial = int.Parse(valores[0]);
             int final = int.Parse(valores[1]);

@@ -11,3 +11,16 @@ C:\Users\pedro\Documents\GitHub\Curso_C-sharp_OrientacaoObjetos\Orientacao a Obj
 C:\Users\pedro\Documents\GitHub\Curso_C-sharp_OrientacaoObjetos\Orientacao a Objetos\Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.dll
 C:\Users\pedro\Documents\GitHub\Curso_C-sharp_OrientacaoObjetos\Orientacao a Objetos\Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.pdb
 C:\Users\pedro\Documents\GitHub\Curso_C-sharp_OrientacaoObjetos\Orientacao a Objetos\Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.genruntimeconfig.cache
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\bin\Debug\netcoreapp3.1\Impares em Intervalo.exe
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\bin\Debug\netcoreapp3.1\Impares em Intervalo.deps.json
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\bin\Debug\netcoreapp3.1\Impares em Intervalo.runtimeconfig.json
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\bin\Debug\netcoreapp3.1\Impares em Intervalo.runtimeconfig.dev.json
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\bin\Debug\netcoreapp3.1\Impares em Intervalo.dll
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\bin\Debug\netcoreapp3.1\Impares em Intervalo.pdb
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.csprojAssemblyReference.cache
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.AssemblyInfoInputs.cache
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.AssemblyInfo.cs
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.csproj.CoreCompileInputs.cache
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.dll
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.pdb
+C:\Users\pedro\Documents\GitHub\GFT_exercicios\01-Impares em Intervalo\obj\Debug\netcoreapp3.1\Impares em Intervalo.genruntimeconfig.cache
