@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pedro\\Documents\\GitHub\\Curso_C-sharp_OrientacaoObjetos\\Orientacao a Objetos\\Impares em Intervalo\\Impares em Intervalo.csproj": {}
+    "C:\\Users\\pedro\\Documents\\GitHub\\GFT_exercicios\\01-Impares em Intervalo\\Impares em Intervalo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pedro\\Documents\\GitHub\\Curso_C-sharp_OrientacaoObjetos\\Orientacao a Objetos\\Impares em Intervalo\\Impares em Intervalo.csproj": {
+    "C:\\Users\\pedro\\Documents\\GitHub\\GFT_exercicios\\01-Impares em Intervalo\\Impares em Intervalo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pedro\\Documents\\GitHub\\Curso_C-sharp_OrientacaoObjetos\\Orientacao a Objetos\\Impares em Intervalo\\Impares em Intervalo.csproj",
+        "projectUniqueName": "C:\\Users\\pedro\\Documents\\GitHub\\GFT_exercicios\\01-Impares em Intervalo\\Impares em Intervalo.csproj",
         "projectName": "Impares em Intervalo",
-        "projectPath": "C:\\Users\\pedro\\Documents\\GitHub\\Curso_C-sharp_OrientacaoObjetos\\Orientacao a Objetos\\Impares em Intervalo\\Impares em Intervalo.csproj",
+        "projectPath": "C:\\Users\\pedro\\Documents\\GitHub\\GFT_exercicios\\01-Impares em Intervalo\\Impares em Intervalo.csproj",
         "packagesPath": "C:\\Users\\pedro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pedro\\Documents\\GitHub\\Curso_C-sharp_OrientacaoObjetos\\Orientacao a Objetos\\Impares em Intervalo\\obj\\",
+        "outputPath": "C:\\Users\\pedro\\Documents\\GitHub\\GFT_exercicios\\01-Impares em Intervalo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pedro\\AppData\\Roaming\\NuGet\\NuGet.Config",
