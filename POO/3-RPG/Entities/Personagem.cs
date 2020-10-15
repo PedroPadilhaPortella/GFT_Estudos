@@ -22,10 +22,7 @@ namespace Personagens
             Level = level;
             TotalDePersonagens++;
         }
-
         public abstract void LvlUp();
         public abstract void Attack();
-
-        
     }
 }

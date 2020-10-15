@@ -16,10 +16,32 @@ namespace _4_Pessoas
             pessoas.Add(p2);
             pessoas.Add(p3);
             pessoas.Add(p4);
+            Console.WriteLine("Total de Pessoas: " + Pessoa.totalPessoas);
 
-            foreach (Pessoa p in pessoas){
-                Console.WriteLine(p);
+            //4 Imprimir os Dados e a pessoa mais velha
+            int maiorAge = 0;
+            string maiorName = "";
+
+            for (int i = 0; i < pessoas.Count; i++)
+            {
+                System.Console.WriteLine(pessoas[i]);
+                if(pessoas[i] == Pessoa.Parse(0)){
+                    maiorAge = pessoas[i].Age;
+                    maiorName = pessoas[i].Name;
+                }else if(pessoas[i].Age > maiorAge){
+                    maiorAge = pessoas[i].Age;
+                    maiorName = pessoas[i].Name;
+                }
             }
+            System.Console.WriteLine($"A pessoa mais velha é o {maiorName}, com {maiorAge} anos");
+            // pessoas.RemoveAll(p => p.Age < 18);
+            // Console.WriteLine("Total de Pessoas: " + Pessoa.totalPessoas);
+
+
+            // //Excluindo os menores
+            // foreach (Pessoa p in pessoas){
+            //     Console.WriteLine(p);
+            // }
         }
     }
 }
