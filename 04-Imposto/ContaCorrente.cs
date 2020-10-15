@@ -2,7 +2,7 @@ using System;
 
 namespace _03_Conta
 {
-    class ContaCorrente : Conta
+    class ContaCorrente : Conta, IImposto
     {
         public ContaCorrente(string nome, string titular, double saldo)
         {
