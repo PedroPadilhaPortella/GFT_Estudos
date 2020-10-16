@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace _4_Pessoas
@@ -17,23 +16,34 @@ namespace _4_Pessoas
             pessoas.Add(p2);
             pessoas.Add(p3);
             pessoas.Add(p4);
-            Console.WriteLine("Total de Pessoas: " + Pessoa.totalPessoas);
 
             //4 Imprimir os Dados e a pessoa mais velha
-            // var r1 = pessoas.Max(p => p.Age);
-            var r1 = pessoas.Max(p => p.Age);
-            var r2 = pessoas.Where(r1).Select(p => p.Name);
-            Console.WriteLine($"Pessoa mais Velha: " + r2);
+            Pessoa older = p1;
+            foreach (var item in pessoas){
+                if(item.Age > older.Age){
+                    older = item;
+                }
+            }
+            Console.WriteLine($"Pessoa mais Velha é {older.Name}, que tem {older.Age}");
 
+            //5 -Excluindo os menores de idade
+            Console.WriteLine("Total de pessoas: " + pessoas.Count);
+            pessoas.RemoveAll(p => p.Age < 18);
+            Console.WriteLine("Todos os menores de idade foram removidos..\nTotal de pessoas: " + pessoas.Count);
+            foreach (Pessoa p in pessoas){
+                Console.WriteLine(p);
+            }
 
-            // pessoas.RemoveAll(p => p.Age < 18);
-            // Console.WriteLine("Total de Pessoas: " + Pessoa.totalPessoas);
-
-
-            // //Excluindo os menores
-            // foreach (Pessoa p in pessoas){
-            //     Console.WriteLine(p);
-            // }
+            //6- Verificando se a pessoa Jessica está na Lista
+            Pessoa pessoa = p4;
+            bool teste = false;
+            foreach (var item in pessoas){
+                if(item.Name == pessoa.Name) teste = true;
+            }
+            if(teste)
+                Console.WriteLine($"{pessoa.Name} está na Lista e sua idade é {pessoa.Age}");
+            else
+                Console.WriteLine($"{pessoa.Name} não está na Lista!");
         }
     }
 }
