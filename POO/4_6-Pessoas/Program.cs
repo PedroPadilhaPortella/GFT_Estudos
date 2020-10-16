@@ -20,39 +20,10 @@ namespace _4_Pessoas
             Console.WriteLine("Total de Pessoas: " + Pessoa.totalPessoas);
 
             //4 Imprimir os Dados e a pessoa mais velha
-            // int maiorAge = 0;
-            // string maiorName = "";
-
-            // for (int i = 0; i < pessoas.Count; i++)
-            // {
-            //     System.Console.WriteLine(pessoas[i]);
-            //     if(pessoas[i] == Pessoa.Parse(0)){
-            //         maiorAge = pessoas[i].Age;
-            //         maiorName = pessoas[i].Name;
-            //     }else if(pessoas[i].Age > maiorAge){
-            //         maiorAge = pessoas[i].Age;
-            //         maiorName = pessoas[i].Name;
-            //     }
-            // }
-
-            // foreach (Pessoa p in pessoas)
-            // {
-            //     Console.WriteLine(p);
-            //     if(p.Age)
-            // }
-            pessoas.Max(p1.Age);
-            pessoas.Sort(delegate (Pessoa p1, Pessoa p2)
-            {
-                return p1.Age.CompareTo(p2.Age);
-            });
-            pessoas.ForEach(delegate (Pessoa p)
-            {
-                Console.WriteLine(String.Format("{0} {1}", p.Age, p.Name));
-            });
-
-            // System.Console.WriteLine($"A pessoa mais velha é o {maiorName}, com {maiorAge} anos");
-
-
+            // var r1 = pessoas.Max(p => p.Age);
+            var r1 = pessoas.Max(p => p.Age);
+            var r2 = pessoas.Where(r1).Select(p => p.Name);
+            Console.WriteLine($"Pessoa mais Velha: " + r2);
 
 
             // pessoas.RemoveAll(p => p.Age < 18);
