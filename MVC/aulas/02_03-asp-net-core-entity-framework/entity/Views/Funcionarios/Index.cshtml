@@ -1,0 +1,15 @@
+@model IEnumerable<entity.Models.Funcionario>
+
+<div class="content" style="text-align: center;">
+    <h2>Funcionários</h2>
+    <a href="/Funcionarios/Cadastrar" class="btn btn-success">Cadastrar Novo Funcionário</a>
+        @foreach (var funcionario in Model){
+            <p>CPF: @funcionario.Cpf, Nome: @funcionario.Nome, Salario: R$@funcionario.Salario
+                <div>
+                    <a href="/Funcionarios/Editar/@funcionario.Id" class="btn btn-warning">Editar</a>
+                    <a href="/Funcionarios/Excluir/@funcionario.Id" class="btn btn-danger">Excluir</a>
+                </div>
+            </p>
+            <hr>
+        }
+</div>
