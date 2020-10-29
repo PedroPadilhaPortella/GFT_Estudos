@@ -1,0 +1,12 @@
+{
+    "Accounts project": {
+        "clecio": {
+            "email": "clecio@gft.com",
+            "password": "GFT@clecio2020"
+        },
+        "pedro": {
+            "email": "pedro@gft.com",
+            "password": "GFT@pedro2020"
+        }
+    }
+}
