@@ -1,6 +1,7 @@
 # GFT_Exercícios
 <img src="https://github.com/PedroPadilhaPortella/GFT_exercicios/blob/master/.github/logo.jpg">
- ### Exercicios desenvolvidos durnte o treinamento do estágio na GFT START_UNI
+
+ ### Exercícios desenvolvidos durante o treinamento do estágio na GFT START_UNI :rocket:
  
  ### Linguagem: C# e Plataforma .Net
  
