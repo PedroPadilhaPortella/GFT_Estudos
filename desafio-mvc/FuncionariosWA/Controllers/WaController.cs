@@ -48,6 +48,12 @@ namespace FuncionariosWA.Controllers
             // var funcionario = Database.Funcionarios.Where(f => f.Status == true).ToList();
             return View();
         }
+
+//Actions de Vagas //
+        public IActionResult Vagas()
+        {
+            return View();
+        }
         
 //Actions de Erro
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

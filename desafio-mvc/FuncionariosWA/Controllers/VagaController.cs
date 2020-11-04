@@ -4,25 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FuncionariosWA.Controllers
 {
-    public class FuncionarioController : Controller
+    public class VagaController: Controller
     {
         private readonly ApplicationDbContext Database;
 
-        public FuncionarioController(ApplicationDbContext database){
+        public VagaController(ApplicationDbContext database){
             Database = database;
         }
 
         public IActionResult Novo()
         {
-            ViewBag.LocalDeTrabalho = Database.GFT.ToList();
-
             return View();
         }
 
         public IActionResult Salvar()
         {
-            //TO DO a data de termino é 15 dias dps do inicio
-            return RedirectToAction("Funcionarios", "Wa");
+            return RedirectToAction("Vagas", "Wa");
         }
         
         public IActionResult Editar()
@@ -32,12 +29,12 @@ namespace FuncionariosWA.Controllers
 
         public IActionResult Atualizar()
         {
-            return RedirectToAction("Funcionarios", "Wa");
+            return RedirectToAction("Vagas", "Wa");
         }
 
         public IActionResult Excluir()
         {
-            return RedirectToAction("Funcionarios", "Wa");
+            return RedirectToAction("Vagas", "Wa");
         }
     }
 }

@@ -13,11 +13,11 @@ namespace FuncionariosWA.Controllers
             Database = database;
         }
 
-        public IActionResult NovaTecnologia()
+        public IActionResult Novo()
         {
             return View();
         }
-        public IActionResult SalvarTecnologia(Tecnologia tecnologiaT)
+        public IActionResult Salvar(Tecnologia tecnologiaT)
         {
             if(ModelState.IsValid){
                 Tecnologia tecnologia = new Tecnologia();
@@ -27,26 +27,26 @@ namespace FuncionariosWA.Controllers
                 Database.SaveChanges();
                 return RedirectToAction("Tecnologias", "Wa");
             }else{
-                return View("../Tecnologia/NovaTecnologia");
+                return View("../Tecnologia/Novo");
             }
         }
-        public IActionResult EditarTecnologia(int id)
+        public IActionResult Editar(int id)
         {
             var tecnologia = Database.Tecnologias.First(t => t.Id == id);
             return View(tecnologia);
         }
-        public IActionResult AtualizarTecnologia(Tecnologia tecnologiaT)
+        public IActionResult Atualizar(Tecnologia tecnologiaT)
         {
             if(ModelState.IsValid){
                 Tecnologia tecnologia = Database.Tecnologias.First(t => t.Id == tecnologiaT.Id);
                 tecnologia.Nome = tecnologiaT.Nome;
                 Database.SaveChanges();
-                return RedirectToAction("Tecnologias", "Tecnologia");
+                return RedirectToAction("Tecnologias", "Wa");
             }else{
-                return View("../Tecnologia/EditarTecnologia");
+                return View("../Tecnologia/Editar");
             }
         }
-        public IActionResult ExcluirTecnologia(int id)
+        public IActionResult Excluir(int id)
         {
             if(id > 0){
                 var categoria = Database.Tecnologias.First(t => t.Id == id);

@@ -4,9 +4,9 @@
 }
 
 <h2>Editar de Locais de Trabalho / Unidade GFT</h2><br>
-<a asp-controller="Wa" asp-action="LocaisDetrabalho" class="btn btn-primary">Voltar</a>
+<a asp-controller="Wa" asp-action="LocaisDetrabalho" class="btn btn-primary btn-lg">Voltar</a>
 <hr>
-<form asp-controller="GFT" asp-action="AtualizarGFT" class="form-horizontal" method="POST">
+<form asp-controller="GFT" asp-action="Atualizar" class="form-horizontal" method="POST">
     <input type="hidden" asp-for="Id">
 
     <label asp-for="Nome">Nome da Filial</label>
@@ -34,5 +34,5 @@
     <span asp-validation-for="Estado"></span>
     <hr>
     
-    <button type="submit" class="btn btn-success">Atualizar</button>
+    <button type="submit" class="btn btn-success btn-lg">Atualizar</button>
 </form>

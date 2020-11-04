@@ -5,7 +5,7 @@
 
 <h2>Vagas em Projetos Disponíveis</h2>
 <hr>
-<a asp-controller="" asp-action="" class="btn btn-success">Adicionar nova Vaga em Projeto</a>
+<a asp-controller="Vaga" asp-action="Novo" class="btn btn-success btn-lg">Adicionar nova Vaga em Projeto</a>
 <a asp-controller="Wa" asp-action="Index" class="btn btn-primary float-right btn-lg">Voltar</a>
 <hr>
 <table class="table table-striped tavble-bordered" id="vagas">
@@ -26,8 +26,8 @@
                 <td>@tecnologia.Id</td>
                 <td>@tecnologia.Nome</td>
                 <td>
-                    <a href="/Tecnologia/EditarTecnologia/@tecnologia.Id" class="btn btn-info">Editar</a>
-                    <form asp-controller="Tecnologia" asp-action="ExcluirTecnologia" style="display: inline;">
+                    <a href="/Tecnologia/Editar/@tecnologia.Id" class="btn btn-info">Editar</a>
+                    <form asp-controller="Tecnologia" asp-action="Excluir" style="display: inline;">
                         <input type="hidden" name="id" id="id" value="@tecnologia.Id">
                         <button class="btn btn-danger">Excluir</button>
                     </form>

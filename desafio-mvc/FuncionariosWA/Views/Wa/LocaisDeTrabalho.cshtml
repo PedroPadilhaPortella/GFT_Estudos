@@ -5,7 +5,7 @@
 
 <h2>Locais de Trabalho</h2>
 <hr>
-<a asp-controller="GFT" asp-action="NovaGFT" class="btn btn-success">Adicionar Local de Trabalho</a>
+<a asp-controller="GFT" asp-action="Novo" class="btn btn-success btn-lg">Adicionar Local de Trabalho</a>
 <a asp-controller="Wa" asp-action="Index" class="btn btn-primary float-right btn-lg">Voltar</a>
 <hr>
 <table class="table table-striped tavble-bordered" id="locaisdetrabalho">
@@ -30,8 +30,8 @@
                 <td>@local.Cidade</td>
                 <td>@local.Estado</td>
                 <td>
-                    <a href="/GFT/EditarGFT/@local.Id" class="btn btn-info">Editar</a>
-                    <form asp-controller="GFT" asp-action="ExcluirGFT" style="display: inline;">
+                    <a href="/GFT/Editar/@local.Id" class="btn btn-info">Editar</a>
+                    <form asp-controller="GFT" asp-action="Excluir" style="display: inline;">
                         <input type="hidden" name="id" id="id" value="@local.Id">
                         <button class="btn btn-danger">Excluir</button>
                     </form>

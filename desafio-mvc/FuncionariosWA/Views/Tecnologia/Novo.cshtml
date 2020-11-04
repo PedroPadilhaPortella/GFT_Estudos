@@ -4,9 +4,9 @@
 }
 
 <h2>Cadastro de Tecnologias</h2><br>
-<a asp-controller="Wa" asp-action="Tecnologias" class="btn btn-primary">Voltar</a>
+<a asp-controller="Wa" asp-action="Tecnologias" class="btn btn-primary btn-lg">Voltar</a>
 <hr>
-<form asp-controller="Tecnologia" asp-action="SalvarTecnologia" class="form-horizontal" method="POST">
+<form asp-controller="Tecnologia" asp-action="Salvar" class="form-horizontal" method="POST">
     <input type="hidden" asp-for="Id" value="0">
 
     <label asp-for="Nome">Nome da Tecnologia</label>
@@ -14,5 +14,5 @@
     <span asp-validation-for="Nome"></span>
     <hr>
     
-    <button type="submit" class="btn btn-success">Adicionar</button>
+    <button type="submit" class="btn btn-success btn-lg">Adicionar</button>
 </form>

@@ -13,11 +13,11 @@ namespace FuncionariosWA.Controllers
             Database = database;
         }
 
-        public IActionResult NovaGFT()
+        public IActionResult Novo()
         {
             return View();
         }
-        public IActionResult SalvarGFT(GFT localDeTrabalho)
+        public IActionResult Salvar(GFT localDeTrabalho)
         {
             if(ModelState.IsValid){
                 GFT gft = new GFT();
@@ -32,16 +32,16 @@ namespace FuncionariosWA.Controllers
                 Database.SaveChanges();
                 return RedirectToAction("LocaisDeTrabalho", "Wa");
             }else{
-                return View("../GFT/NovaGFT");
+                return View("../GFT/Novo");
             }
         }
 
-        public IActionResult EditarGFT(int id)
+        public IActionResult Editar(int id)
         {
             var gft = Database.GFT.First(gft => gft.Id == id);
             return View(gft);
         }
-        public IActionResult AtualizarGFT(GFT local)
+        public IActionResult Atualizar(GFT local)
         {
             if(ModelState.IsValid){
                 GFT gft = Database.GFT.First(gft => gft.Id == local.Id);
@@ -54,10 +54,10 @@ namespace FuncionariosWA.Controllers
                 Database.SaveChanges();
                 return RedirectToAction("LocaisDeTrabalho", "Wa");
             }else{
-                return View("../GFT/EditarGFT");
+                return View("../GFT/Editar");
             }
         }
-        public IActionResult ExcluirGFT(int id)
+        public IActionResult Excluir(int id)
         {
             if(id > 0){
                 var gft = Database.GFT.First(gft => gft.Id == id);
