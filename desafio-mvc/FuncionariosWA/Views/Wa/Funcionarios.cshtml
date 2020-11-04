@@ -1,0 +1,59 @@
+@model IEnumerable<FuncionariosWA.Models.Funcionario>
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Funcionários em WA</h2>
+<hr>
+<a asp-controller="Funcionario" asp-action="NovoFuncionario" class="btn btn-success">Cadastrar Funcionário em WA</a>
+<a asp-controller="Wa" asp-action="Index" class="btn btn-primary float-right btn-lg">Voltar</a>
+<hr>
+<table class="table table-striped tavble-bordered" id="funcionarios">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Cargo</th>
+            <th>Tecnologias</th>
+            <th>Inicio WA</th>
+            <th>Previsão Término WA</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @* @foreach (var tecnologia in Model) {
+            <tr>
+                <td>@tecnologia.Id</td>
+                <td>@tecnologia.Nome</td>
+                <td>
+                    <a href="/Tecnologia/EditarTecnologia/@tecnologia.Id" class="btn btn-info">Editar</a>
+                    <form asp-controller="Tecnologia" asp-action="ExcluirTecnologia" style="display: inline;">
+                        <input type="hidden" name="id" id="id" value="@tecnologia.Id">
+                        <button class="btn btn-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        } *@
+    </tbody>
+</table>
+
+<script>
+    $(document).ready( function () {
+        $('#funcionarios').DataTable({
+            "info": false,
+            "language": {
+                "legthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "Nenhum Registro foi encontrado...",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum Registro Disponível",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": "Próxima",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    } );
+</script>

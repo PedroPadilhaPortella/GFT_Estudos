@@ -1,0 +1,38 @@
+@model FuncionariosWA.Models.Funcionario
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Cadastro de Funcionários em WA</h2><br>
+<a asp-controller="Wa" asp-action="Funcionarios" class="btn btn-primary">Voltar</a>
+<hr>
+<form asp-controller="Funcionario" asp-action="SalvarFuncionario" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id" value="0">
+
+    <label asp-for="Nome">Nome</label>
+    <input class="form-control" type="text" asp-for="Nome">
+    <span asp-validation-for="Nome"></span>
+    <hr>
+
+    <label asp-for="Matricula">Matricula</label>
+    <input class="form-control" type="text" asp-for="Matricula">
+    <span asp-validation-for="Matricula"></span>
+    <hr>
+    
+    <label asp-for="Cargo">Cargo</label>
+    <input class="form-control" type="text" asp-for="Cargo" placeholder="Analista de Sistemas">
+    <span asp-validation-for="Cargo"></span>
+    <hr>
+    
+    <label asp-for="Inicio_wa">Inicio do Wa</label>
+    <input class="form-control" type="date" asp-for="Inicio_wa">
+    <span asp-validation-for="Inicio_wa"></span>
+    <hr>
+
+
+    <label asp-for="Local_de_Trabalho">Local de Trabalho</label>
+    <select asp-for="Local_de_Trabalho" asp-items='@(new SelectList(@ViewBag.LocalDeTrabalho, "Id", "Nome"))' class="form-control"></select>
+    <hr>
+    
+    <button type="submit" class="btn btn-success">Adicionar Funcionário</button>
+</form>
