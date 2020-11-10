@@ -1,0 +1,55 @@
+@model IEnumerable<FuncionariosWA.Models.Cargo>
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Cargos</h2>
+<hr>
+<a asp-controller="Cargo" asp-action="Novo" class="btn btn-success btn-lg">Adicionar Cargo</a>
+<a asp-controller="Wa" asp-action="Index" class="btn btn-primary float-right btn-lg">Voltar</a>
+<hr>
+<table class="table table-striped table-bordered" id="cargos">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cargo in Model) {
+            <tr>
+                <td>@cargo.Id</td>
+                <td>@cargo.Nome</td>
+                <td>
+                    <a href="/Cargo/Editar/@cargo.Id" class="btn btn-info">Editar</a>
+                    <form asp-controller="Cargo" asp-action="Excluir" style="display: inline;">
+                        <input type="hidden" name="id" id="id" value="@cargo.Id">
+                        <button class="btn btn-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready( function () {
+        $('#cargos').DataTable({
+            "info": false,
+            "language": {
+                "legthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "Nenhum Registro foi encontrado...",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum Registro Disponível",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": "Próxima",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    } );
+</script>

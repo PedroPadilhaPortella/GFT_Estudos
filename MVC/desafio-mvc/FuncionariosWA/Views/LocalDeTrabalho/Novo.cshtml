@@ -1,0 +1,43 @@
+@model FuncionariosWA.DTO.LocalDeTrabalhoDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Cadastro de Locais de Trabalho / Unidade GFT</h2><br>
+<a asp-controller="Wa" asp-action="LocaisDetrabalho" class="btn btn-primary btn-lg">Voltar</a>
+<hr>
+<form asp-controller="LocalDetrabalho" asp-action="Salvar" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id" value="0">
+
+    <label asp-for="Nome">Nome da Filial</label>
+    <input class="form-control" type="text" asp-for="Nome">
+    <span asp-validation-for="Nome"></span>
+    <hr>
+
+    <label asp-for="Cep">CEP</label>
+    <input class="form-control" type="text" asp-for="Cep" placeholder="00000-000">
+    <span asp-validation-for="Cep"></span>
+    <hr>
+    
+    <label asp-for="Endereco">Endereço</label>
+    <input class="form-control" type="text" asp-for="Endereco">
+    <span asp-validation-for="Endereco"></span>
+    <hr>
+    
+    <label asp-for="Cidade">Cidade</label>
+    <input class="form-control" type="text" asp-for="Cidade">
+    <span asp-validation-for="Cidade"></span>
+    <hr>
+    
+    <label asp-for="Estado">Estado</label>
+    <input class="form-control" type="text" asp-for="Estado">
+    <span asp-validation-for="Estado"></span>
+    <hr>
+
+    <label asp-for="Telefone">Telefone</label>
+    <input class="form-control" type="text" asp-for="Telefone">
+    <span asp-validation-for="Telefone"></span>
+    <hr>
+    
+    <button type="submit" class="btn btn-success btn-lg">Adicionar</button>
+</form>
