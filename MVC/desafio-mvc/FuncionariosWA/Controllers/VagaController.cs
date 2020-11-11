@@ -3,11 +3,13 @@ using System.Linq;
 using FuncionariosWA.Data;
 using FuncionariosWA.DTO;
 using FuncionariosWA.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FuncionariosWA.Controllers
 {
+    [Authorize]
     public class VagaController : Controller
     {
         private readonly ApplicationDbContext Database;

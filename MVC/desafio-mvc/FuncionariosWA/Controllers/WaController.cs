@@ -9,9 +9,11 @@ using FuncionariosWA.Models;
 using FuncionariosWA.Data;
 using Microsoft.EntityFrameworkCore;
 using FuncionariosWA.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FuncionariosWA.Controllers
 {
+    [Authorize]
     public class WaController : Controller
     {
         private readonly ApplicationDbContext Database;

@@ -3,11 +3,13 @@ using System.Linq;
 using FuncionariosWA.Data;
 using FuncionariosWA.DTO;
 using FuncionariosWA.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FuncionariosWA.Controllers
 {
+    [Authorize]
     public class FuncionarioController : Controller
     {
         private readonly ApplicationDbContext Database;
@@ -34,7 +36,7 @@ namespace FuncionariosWA.Controllers
                 funcionario.Nome = functionarioT.Nome;
                 funcionario.Matricula = functionarioT.Matricula;
                 funcionario.InicioWa = DateTime.Now;
-                funcionario.TerminoWa = functionarioT.InicioWa.AddDays(15);
+                funcionario.TerminoWa = DateTime.Now.AddDays(15);
                 funcionario.Status = true;
                 funcionario.Cargo = Database.Cargos.First(c => c.Id == functionarioT.CargoId);
                 funcionario.Tecnologia = Database.Tecnologias.First(t => t.Id == functionarioT.TecnologiaId);

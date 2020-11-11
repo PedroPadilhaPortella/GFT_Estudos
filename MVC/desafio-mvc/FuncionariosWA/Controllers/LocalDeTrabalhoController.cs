@@ -3,9 +3,11 @@ using FuncionariosWA.Data;
 using FuncionariosWA.Models;
 using FuncionariosWA.DTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FuncionariosWA.Controllers
 {
+    [Authorize]
     public class LocalDeTrabalhoController : Controller
     {
         private readonly ApplicationDbContext Database;
