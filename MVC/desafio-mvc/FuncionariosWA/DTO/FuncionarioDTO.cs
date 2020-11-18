@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FuncionariosWA.Models;
 
 namespace FuncionariosWA.DTO
 {
@@ -30,7 +31,9 @@ namespace FuncionariosWA.DTO
         public int CargoId { get; set; }
 
 
-        [Required(ErrorMessage = "O Cargo do Funcionário é Obrigatório.")]
-        public int TecnologiaId { get; set; }
+        [Required]
+        public int[] TecnologiaId { get; set; }
+        public List<FuncionarioTecnologia> FuncionarioTecnologias { get; set; }
+        public List<Tecnologia> Tecnologias { get; set; }
     }
 }

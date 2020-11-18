@@ -13,12 +13,11 @@ namespace FuncionariosWA.Models
         public bool Status { get; set; }
         public Cargo Cargo { get; set; }
         public LocalDeTrabalho LocalDeTrabalho { get; set; }
-        public Tecnologia Tecnologia { get; set; }
-        
-        
+        public ICollection<FuncionarioTecnologia> FuncionarioTecnologias { get; set; }
+
+
         public Funcionario() { }
-        public Funcionario(int id, string nome, string matricula, DateTime inicioWa, Cargo cargo, 
-        Tecnologia tecnologia, LocalDeTrabalho localDeTrabalho, bool status)
+        public Funcionario(int id, string nome, string matricula, DateTime inicioWa, Cargo cargo, LocalDeTrabalho localDeTrabalho, bool status) 
         {
             Id = id;
             Nome = nome;
@@ -26,8 +25,8 @@ namespace FuncionariosWA.Models
             InicioWa = inicioWa;
             TerminoWa = inicioWa.AddDays(15);
             Cargo = cargo;
-            Tecnologia = tecnologia;
             LocalDeTrabalho = localDeTrabalho;
             Status = status;
-        }    }
+        }
+    }
 }

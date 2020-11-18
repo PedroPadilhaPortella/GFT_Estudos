@@ -35,7 +35,7 @@
     <hr>
 
     <label asp-for="TecnologiaId">Tecnologia</label>
-    <select asp-for="TecnologiaId" asp-items='@(new SelectList(@ViewBag.Tecnologias, "Id", "Nome"))' class="form-control">
+    <select asp-for="TecnologiaId" asp-items='@(new SelectList(@ViewBag.Tecnologias, "Id", "Nome"))' multiple class="form-control">
         <option value="">Selecione uma Tecnologia</option>
     </select>
     <span asp-validation-for="TecnologiaId"></span>

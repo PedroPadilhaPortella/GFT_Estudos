@@ -12,12 +12,13 @@ namespace FuncionariosWA.Models
         public int QuantidadeDeVagas { get; set; }
         public DateTime AberturaDaVaga { get; set; }
         public Cargo Cargo { get; set; }
-        public Tecnologia Tecnologia { get; set; }
+        public int CargoId { get; set; }
         public bool Status { get; set; }
+        public ICollection<VagaTecnologia> VagaTecnologias { get; set; }
+
 
         public Vaga() { }
-        public Vaga(int id, string projeto, string descricao, string codigoDaVaga, int quantidadeDeVagas, DateTime aberturaDaVaga,
-        Cargo cargo, Tecnologia tecnologia, bool status)
+        public Vaga(int id, string projeto, string descricao, string codigoDaVaga, int quantidadeDeVagas, DateTime aberturaDaVaga, Cargo cargo, bool status)
         {
             Id = id;
             Projeto = projeto;
@@ -26,7 +27,6 @@ namespace FuncionariosWA.Models
             QuantidadeDeVagas = quantidadeDeVagas;
             AberturaDaVaga = aberturaDaVaga;
             Cargo = cargo;
-            Tecnologia = tecnologia;
             Status = status;
         }
 

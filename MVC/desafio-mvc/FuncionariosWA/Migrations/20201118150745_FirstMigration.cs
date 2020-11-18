@@ -211,8 +211,7 @@ namespace FuncionariosWA.Migrations
                     CodigoDaVaga = table.Column<string>(nullable: true),
                     QuantidadeDeVagas = table.Column<int>(nullable: false),
                     AberturaDaVaga = table.Column<DateTime>(nullable: false),
-                    CargoId = table.Column<int>(nullable: true),
-                    TecnologiaId = table.Column<int>(nullable: true),
+                    CargoId = table.Column<int>(nullable: false),
                     Status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -223,13 +222,7 @@ namespace FuncionariosWA.Migrations
                         column: x => x.CargoId,
                         principalTable: "Cargos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Vagas_Tecnologias_TecnologiaId",
-                        column: x => x.TecnologiaId,
-                        principalTable: "Tecnologias",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,8 +237,7 @@ namespace FuncionariosWA.Migrations
                     TerminoWa = table.Column<DateTime>(nullable: false),
                     Status = table.Column<bool>(nullable: false),
                     CargoId = table.Column<int>(nullable: true),
-                    LocalDeTrabalhoId = table.Column<int>(nullable: true),
-                    VagaId = table.Column<int>(nullable: true)
+                    LocalDeTrabalhoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -262,13 +254,92 @@ namespace FuncionariosWA.Migrations
                         principalTable: "LocaisDeTrabalho",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VagaTecnologias",
+                columns: table => new
+                {
+                    TecnologiaId = table.Column<int>(nullable: false),
+                    VagaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VagaTecnologias", x => new { x.VagaId, x.TecnologiaId });
                     table.ForeignKey(
-                        name: "FK_Funcionarios_Vagas_VagaId",
+                        name: "FK_VagaTecnologias_Tecnologias_TecnologiaId",
+                        column: x => x.TecnologiaId,
+                        principalTable: "Tecnologias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VagaTecnologias_Vagas_VagaId",
                         column: x => x.VagaId,
                         principalTable: "Vagas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Alocacao",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Data = table.Column<DateTime>(nullable: false),
+                    FuncionariosId = table.Column<int>(nullable: false),
+                    VagasId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Alocacao", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Alocacao_Funcionarios_FuncionariosId",
+                        column: x => x.FuncionariosId,
+                        principalTable: "Funcionarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Alocacao_Vagas_VagasId",
+                        column: x => x.VagasId,
+                        principalTable: "Vagas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FuncionarioTecnologias",
+                columns: table => new
+                {
+                    FuncionarioId = table.Column<int>(nullable: false),
+                    TecnologiaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FuncionarioTecnologias", x => new { x.FuncionarioId, x.TecnologiaId });
+                    table.ForeignKey(
+                        name: "FK_FuncionarioTecnologias_Funcionarios_FuncionarioId",
+                        column: x => x.FuncionarioId,
+                        principalTable: "Funcionarios",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FuncionarioTecnologias_Tecnologias_TecnologiaId",
+                        column: x => x.TecnologiaId,
+                        principalTable: "Tecnologias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Alocacao_FuncionariosId",
+                table: "Alocacao",
+                column: "FuncionariosId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Alocacao_VagasId",
+                table: "Alocacao",
+                column: "VagasId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -318,9 +389,9 @@ namespace FuncionariosWA.Migrations
                 column: "LocalDeTrabalhoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funcionarios_VagaId",
-                table: "Funcionarios",
-                column: "VagaId");
+                name: "IX_FuncionarioTecnologias_TecnologiaId",
+                table: "FuncionarioTecnologias",
+                column: "TecnologiaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vagas_CargoId",
@@ -328,13 +399,16 @@ namespace FuncionariosWA.Migrations
                 column: "CargoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vagas_TecnologiaId",
-                table: "Vagas",
+                name: "IX_VagaTecnologias_TecnologiaId",
+                table: "VagaTecnologias",
                 column: "TecnologiaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Alocacao");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -351,7 +425,10 @@ namespace FuncionariosWA.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Funcionarios");
+                name: "FuncionarioTecnologias");
+
+            migrationBuilder.DropTable(
+                name: "VagaTecnologias");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -360,16 +437,19 @@ namespace FuncionariosWA.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "LocaisDeTrabalho");
+                name: "Funcionarios");
+
+            migrationBuilder.DropTable(
+                name: "Tecnologias");
 
             migrationBuilder.DropTable(
                 name: "Vagas");
 
             migrationBuilder.DropTable(
-                name: "Cargos");
+                name: "LocaisDeTrabalho");
 
             migrationBuilder.DropTable(
-                name: "Tecnologias");
+                name: "Cargos");
         }
     }
 }

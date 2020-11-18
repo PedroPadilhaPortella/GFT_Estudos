@@ -39,10 +39,17 @@ namespace FuncionariosWA.Controllers
                 funcionario.TerminoWa = DateTime.Now.AddDays(15);
                 funcionario.Status = true;
                 funcionario.Cargo = Database.Cargos.First(c => c.Id == functionarioT.CargoId);
-                funcionario.Tecnologia = Database.Tecnologias.First(t => t.Id == functionarioT.TecnologiaId);
                 funcionario.LocalDeTrabalho = Database.LocaisDeTrabalho.First(l => l.Id == functionarioT.LocalDeTrabalhoId);
 
                 Database.Funcionarios.Add(funcionario);
+
+                foreach(var id in functionarioT.TecnologiaId){
+                    FuncionarioTecnologia funcionarioTecnologia = new FuncionarioTecnologia();
+                    funcionarioTecnologia.Funcionario = funcionario;
+                    funcionarioTecnologia.Tecnologia = Database.Tecnologias.First(t => t.Id == id);
+                    Database.Add(funcionarioTecnologia);
+                }
+
                 Database.SaveChanges();
                 return RedirectToAction("Funcionarios", "Wa");
             }
@@ -58,13 +65,13 @@ namespace FuncionariosWA.Controllers
 
         public IActionResult Editar(int id)
         {
-            var funcionario = Database.Funcionarios.Include(f => f.LocalDeTrabalho).Include(f => f.Cargo).Include(f => f.Tecnologia).First(f => f.Id == id);
+            var funcionario = Database.Funcionarios.Include(f => f.LocalDeTrabalho).Include(f => f.Cargo)/*.Include(f => f.Tecnologia)*/.First(f => f.Id == id);
             FuncionarioDTO funcionarioView = new FuncionarioDTO();
             funcionarioView.Id = funcionario.Id;
             funcionarioView.Nome = funcionario.Nome;
             funcionarioView.Matricula = funcionario.Matricula;
             funcionarioView.CargoId = funcionario.Cargo.Id;
-            funcionarioView.TecnologiaId = funcionario.Tecnologia.Id;
+            // funcionarioView.TecnologiaId = funcionario.Tecnologia.Id;
             funcionarioView.LocalDeTrabalhoId = funcionario.LocalDeTrabalho.Id;
 
             ViewBag.LocaisDeTrabalho = Database.LocaisDeTrabalho.Where(n => n.Status == true).ToList();
@@ -83,7 +90,19 @@ namespace FuncionariosWA.Controllers
                 funcionario.Matricula = funcionarioT.Matricula;
                 funcionario.Cargo = Database.Cargos.First(c => c.Id == funcionarioT.CargoId);
                 funcionario.LocalDeTrabalho = Database.LocaisDeTrabalho.First(l => l.Id == funcionarioT.LocalDeTrabalhoId);
-                funcionario.Tecnologia = Database.Tecnologias.First(t => t.Id == funcionarioT.TecnologiaId);
+                
+                var removerRelacao = Database.FuncionarioTecnologias.Where(ft => ft.FuncionarioId == funcionarioT.Id).ToList();
+                foreach(var e in removerRelacao){
+                    Database.Remove(e);
+                }
+                Database.RemoveRange(removerRelacao);
+
+                foreach(var id in funcionarioT.TecnologiaId){
+                    FuncionarioTecnologia funcionarioTecnologia = new FuncionarioTecnologia();
+                    funcionarioTecnologia.Funcionario = funcionario;
+                    funcionarioTecnologia.Tecnologia = Database.Tecnologias.First(t => t.Id == id);
+                    Database.Add(funcionarioTecnologia);
+                }
 
                 Database.SaveChanges();
                 return RedirectToAction("Funcionarios", "Wa");

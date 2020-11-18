@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FuncionariosWA.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FuncionariosWA.DTO
 {
@@ -28,9 +30,13 @@ namespace FuncionariosWA.DTO
 
         [Required]
         public int CargoId { get; set; }
+        public Cargo Cargo { get; set; }
+        public DateTime AberturaDaVaga { get; set; }
 
 
         [Required]
-        public int TecnologiaId { get; set; }
+        public int[] TecnologiaId { get; set; }
+        public List<VagaTecnologia> VagaTecnologias { get; set; }
+        public List<Tecnologia> Tecnologias { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using FuncionariosWA.Data;
 using FuncionariosWA.DTO;
@@ -39,9 +40,16 @@ namespace FuncionariosWA.Controllers
                 vaga.AberturaDaVaga = DateTime.Now;
                 vaga.Status = true;
                 vaga.Cargo = Database.Cargos.First(c => c.Id == vagaT.CargoId);
-                vaga.Tecnologia = Database.Tecnologias.First(t => t.Id == vagaT.TecnologiaId);
 
                 Database.Vagas.Add(vaga);
+
+                foreach(var id in vagaT.TecnologiaId){
+                    VagaTecnologia vagaTecnologia = new VagaTecnologia();
+                    vagaTecnologia.Vaga = vaga;
+                    vagaTecnologia.Tecnologia = Database.Tecnologias.First(t => t.Id == id);
+                    Database.Add(vagaTecnologia);
+                }
+
                 Database.SaveChanges();
                 return RedirectToAction("Vagas", "Wa");
             }else{
@@ -54,7 +62,7 @@ namespace FuncionariosWA.Controllers
 
         public IActionResult Editar(int id)
         {
-            var vaga = Database.Vagas.Include(v => v.Cargo).Include(v => v.Tecnologia).First(v => v.Id == id);
+            var vaga = Database.Vagas.Include(v => v.Cargo)./*Include(v => v.Tecnologia).*/First(v => v.Id == id);
             VagaDTO vagaView = new VagaDTO();
             vagaView.Id = vaga.Id;
             vagaView.Projeto = vaga.Projeto;
@@ -62,7 +70,6 @@ namespace FuncionariosWA.Controllers
             vagaView.CodigoDaVaga = vaga.CodigoDaVaga;
             vagaView.QuantidadeDeVagas = vaga.QuantidadeDeVagas;
             vagaView.CargoId = vaga.Cargo.Id;
-            vagaView.TecnologiaId = vaga.Tecnologia.Id;
 
             ViewBag.Cargos = Database.Cargos.Where(n => n.Status == true).ToList();
             ViewBag.Tecnologias = Database.Tecnologias.Where(n => n.Status == true).ToList();
@@ -79,7 +86,19 @@ namespace FuncionariosWA.Controllers
                 vaga.CodigoDaVaga = vagaT.CodigoDaVaga;
                 vaga.QuantidadeDeVagas = vagaT.QuantidadeDeVagas;
                 vaga.Cargo = Database.Cargos.First(c => c.Id == vagaT.CargoId);
-                vaga.Tecnologia = Database.Tecnologias.First(t => t.Id == vagaT.TecnologiaId);
+
+                var removerRelacao = Database.VagaTecnologias.Where(vt => vt.VagaId == vagaT.Id).ToList();
+                foreach(var e in removerRelacao){
+                    Database.Remove(e);
+                }
+                Database.RemoveRange(removerRelacao);
+
+                foreach(var id in vagaT.TecnologiaId){
+                    VagaTecnologia vagaTecnologia = new VagaTecnologia();
+                    vagaTecnologia.Vaga = vaga;
+                    vagaTecnologia.Tecnologia = Database.Tecnologias.First(t => t.Id == id);
+                    Database.Add(vagaTecnologia);
+                }
 
                 Database.SaveChanges();
                 return RedirectToAction("Vagas", "Wa");
@@ -95,7 +114,7 @@ namespace FuncionariosWA.Controllers
         {
             if (id > 0)
             {
-                var vaga = Database.Vagas.First(v => v.Id == id);
+                Vaga vaga = Database.Vagas.First(v => v.Id == id);
                 vaga.Status = false;
                 Database.SaveChanges();
             }

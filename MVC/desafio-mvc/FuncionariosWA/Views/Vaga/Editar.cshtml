@@ -38,13 +38,11 @@
     <hr>
 
     <label asp-for="TecnologiaId">Tecnologia</label>
-    <select asp-for="TecnologiaId" asp-items='@(new SelectList(@ViewBag.Tecnologias, "Id", "Nome"))' class="form-control">
+    <select asp-for="TecnologiaId" asp-items='@(new SelectList(@ViewBag.Tecnologias, "Id", "Nome"))' multiple class="form-control ui fluid dropdown">
         <option value="">Selecione uma Tecnologia</option>
     </select>
     <span asp-validation-for="TecnologiaId"></span>
     <hr>
-
-    @* TO DO Tecnologias *@
     
     <button type="submit" class="btn btn-success btn-lg">Atualizar Vaga</button>
 </form>

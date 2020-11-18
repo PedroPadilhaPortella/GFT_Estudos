@@ -29,7 +29,14 @@
                 <td>@funcionario.Nome</td>
                 <td>@funcionario.Matricula</td>
                 <td>@funcionario.Cargo.Nome</td>
-                <td>@funcionario.Tecnologia.Nome</td>
+                <td>
+                    <ul>
+                        @foreach (var tech in funcionario.FuncionarioTecnologias.Select(e => e.Tecnologia))
+                        {
+                        <li>@tech.Nome</li>
+                        }
+                    </ul>
+                </td>
                 <td>@funcionario.LocalDeTrabalho.Nome</td>
                 <td>@funcionario.InicioWa.ToString("dd/MM/yyyy")</td>
                 <td>@funcionario.TerminoWa.ToString("dd/MM/yyyy")</td>

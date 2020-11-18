@@ -39,13 +39,6 @@ namespace FuncionariosWA.Controllers
             var cargos = Database.Cargos.Where(c => c.Status == true).ToList();
             return View(cargos);
         }
-        
-//Actions de Funcionarios //
-        public IActionResult Funcionarios()
-        {
-            var funcionario = Database.Funcionarios.Where(f => f.Status == true).Include(f => f.Cargo).Include(f => f.LocalDeTrabalho).Include(f => f.Tecnologia).ToList();
-            return View(funcionario);
-        }
 
 //Actions de Locais de Trabalho //
         public IActionResult LocaisDeTrabalho()
@@ -61,10 +54,26 @@ namespace FuncionariosWA.Controllers
             return View(tecnologia);
         }
 
+//Actions de Funcionarios //
+        public IActionResult Funcionarios()
+        {
+            var funcionario = Database.Funcionarios.Where(f => f.Status == true)
+                .Include(f => f.Cargo)
+                .Include(f => f.LocalDeTrabalho)
+                .Include(f => f.FuncionarioTecnologias).ThenInclude(ft => ft.Tecnologia)
+                .ToList();
+            
+            return View(funcionario);
+        }
+
 //Actions de Vagas //
         public IActionResult Vagas()
         {
-            var vaga = Database.Vagas.Where(v => v.Status == true).Include(v => v.Tecnologia).Include(v => v.Cargo).ToList();
+            var vaga = Database.Vagas.Where(v => v.Status == true)
+                .Include(v => v.Cargo).Where(v => v.Cargo.Status == true)
+                .Include(v => v.VagaTecnologias).ThenInclude(vt => vt.Tecnologia)
+                .ToList();
+
             return View(vaga);
         }
 

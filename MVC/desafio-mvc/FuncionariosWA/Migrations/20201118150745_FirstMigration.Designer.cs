@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuncionariosWA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201108182733_DataAlocacao")]
-    partial class DataAlocacao
+    [Migration("20201118150745_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,10 +28,10 @@ namespace FuncionariosWA.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("FuncionariosId")
+                    b.Property<int>("FuncionariosId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VagasId")
+                    b.Property<int>("VagasId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -84,14 +84,8 @@ namespace FuncionariosWA.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("TecnologiaId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("TerminoWa")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<int?>("VagaId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -99,11 +93,22 @@ namespace FuncionariosWA.Migrations
 
                     b.HasIndex("LocalDeTrabalhoId");
 
+                    b.ToTable("Funcionarios");
+                });
+
+            modelBuilder.Entity("FuncionariosWA.Models.FuncionarioTecnologia", b =>
+                {
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TecnologiaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FuncionarioId", "TecnologiaId");
+
                     b.HasIndex("TecnologiaId");
 
-                    b.HasIndex("VagaId");
-
-                    b.ToTable("Funcionarios");
+                    b.ToTable("FuncionarioTecnologias");
                 });
 
             modelBuilder.Entity("FuncionariosWA.Models.LocalDeTrabalho", b =>
@@ -164,7 +169,7 @@ namespace FuncionariosWA.Migrations
                     b.Property<DateTime>("AberturaDaVaga")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("CargoId")
+                    b.Property<int>("CargoId")
                         .HasColumnType("int");
 
                     b.Property<string>("CodigoDaVaga")
@@ -182,16 +187,26 @@ namespace FuncionariosWA.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("TecnologiaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CargoId");
 
+                    b.ToTable("Vagas");
+                });
+
+            modelBuilder.Entity("FuncionariosWA.Models.VagaTecnologia", b =>
+                {
+                    b.Property<int>("VagaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TecnologiaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("VagaId", "TecnologiaId");
+
                     b.HasIndex("TecnologiaId");
 
-                    b.ToTable("Vagas");
+                    b.ToTable("VagaTecnologias");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -394,11 +409,15 @@ namespace FuncionariosWA.Migrations
                 {
                     b.HasOne("FuncionariosWA.Models.Funcionario", "Funcionarios")
                         .WithMany()
-                        .HasForeignKey("FuncionariosId");
+                        .HasForeignKey("FuncionariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FuncionariosWA.Models.Vaga", "Vagas")
                         .WithMany()
-                        .HasForeignKey("VagasId");
+                        .HasForeignKey("VagasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FuncionariosWA.Models.Funcionario", b =>
@@ -410,25 +429,45 @@ namespace FuncionariosWA.Migrations
                     b.HasOne("FuncionariosWA.Models.LocalDeTrabalho", "LocalDeTrabalho")
                         .WithMany()
                         .HasForeignKey("LocalDeTrabalhoId");
+                });
+
+            modelBuilder.Entity("FuncionariosWA.Models.FuncionarioTecnologia", b =>
+                {
+                    b.HasOne("FuncionariosWA.Models.Funcionario", "Funcionario")
+                        .WithMany("FuncionarioTecnologias")
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FuncionariosWA.Models.Tecnologia", "Tecnologia")
-                        .WithMany()
-                        .HasForeignKey("TecnologiaId");
-
-                    b.HasOne("FuncionariosWA.Models.Vaga", "Vaga")
-                        .WithMany()
-                        .HasForeignKey("VagaId");
+                        .WithMany("FuncionarioTecnologias")
+                        .HasForeignKey("TecnologiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FuncionariosWA.Models.Vaga", b =>
                 {
                     b.HasOne("FuncionariosWA.Models.Cargo", "Cargo")
                         .WithMany()
-                        .HasForeignKey("CargoId");
+                        .HasForeignKey("CargoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
+            modelBuilder.Entity("FuncionariosWA.Models.VagaTecnologia", b =>
+                {
                     b.HasOne("FuncionariosWA.Models.Tecnologia", "Tecnologia")
-                        .WithMany()
-                        .HasForeignKey("TecnologiaId");
+                        .WithMany("VagaTecnologias")
+                        .HasForeignKey("TecnologiaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FuncionariosWA.Models.Vaga", "Vaga")
+                        .WithMany("VagaTecnologias")
+                        .HasForeignKey("VagaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
