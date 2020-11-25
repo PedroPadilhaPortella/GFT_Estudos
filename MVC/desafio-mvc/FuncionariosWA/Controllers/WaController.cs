@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using FuncionariosWA.Models;
 using FuncionariosWA.Data;
-using Microsoft.EntityFrameworkCore;
 using FuncionariosWA.DTO;
+using FuncionariosWA.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FuncionariosWA.Controllers
 {

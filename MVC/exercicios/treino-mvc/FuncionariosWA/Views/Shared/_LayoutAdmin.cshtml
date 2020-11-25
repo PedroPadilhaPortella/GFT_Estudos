@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Funcionários WA</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="~/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Datatables CSS
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    -->
+
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/js/sb-admin.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+</head>
+
+
+<body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark static-top" style="background-color: darkblue;">
+        <a class="navbar-brand mr-1" asp-controller="Wa" asp-action="Wa">GFT <i class="fas fa-square-full ml-3"></i></a>
+    </nav>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Wa" asp-action="Index">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Wa" asp-action="Funcionarios">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Funcionários</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Wa" asp-action="Vagas">
+                    <i class="fas fa-fw fa-globe-americas"></i>
+                    <span>Vagas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Wa" asp-action="Alocacao">
+                    <i class="fas fa-fw fa-location-arrow"></i>
+                    <span>Alocações</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Wa" asp-action="Tecnologias">
+                    <i class="fab fa-react"></i>
+                    <span>Tecnologias</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Wa" asp-action="LocaisDeTrabalho">
+                    <i class="fas fa-fw fa-map-marker-alt"></i>
+                    <span>Locais de Trabalho</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Wa" asp-action="Cargos">
+                    <i class="fas fa-fw fa-user-cog"></i>
+                    <span>Cargos</span>
+                </a>
+            </li>
+        </ul>
+
+        <div id="content-wrapper">
+            <div class="container-fluid">
+                <h2>@ViewData["Title"]</h2>
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+@model FuncionariosWA.DTO.AlocacaoDTO;
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container main-box">
+    <h1>Alocações</h1>
+
+  <form asp-controller="Wa" asp-action="SalvarAlocacao" class="form-horizontal" method="POST">
+
+    <input type="hidden" asp-for="Id" value="0">
+
+      <label asp-for="FuncionarioId">Funcionários</label>
+      <select asp-for="FuncionarioId" asp-items='@(new SelectList(@ViewBag.Funcionarios, "Id", "Nome"))' class="form-control">
+        <option value="">Selecione um Funcionário</option>
+      </select>
+      <span asp-validation-for="FuncionarioId"></span>
+      <hr>
+
+
+      <label asp-for="VagaId">Vagas</label>
+      <select asp-for="VagaId" asp-items='@(new SelectList(@ViewBag.Vagas, "Id", "Projeto"))' class="form-control">
+        <option value="">Selecione uma Vaga</option>
+      </select>
+      <span asp-validation-for="VagaId"></span>
+      <hr>
+      
+      <div class="flex-box container-box">
+        <button class="btn btn-primary btn-lg content-box"><i class="fas fa-arrow-down"></i><br>Alocar</button> 
+      </div>
+      <hr>
+      <div class="flex-box container-box">
+        <a asp-controller="Wa" asp-action="Historico" class="btn btn-warning btn-lg"><i class="fas fa-list-ul"></i><br>Histórico de Alocações</a> 
+      </div>
+
+  </form>
+
+</div>
+
+
+<style>
+  .flex-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container-box {
+    height: 100px;
+  }
+
+  .content-box {
+    text-align: center;
+    width: 100px;
+  }
+  .main-box {
+    text-align: center;
+    width: 400px;
+  }
+</style>

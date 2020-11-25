@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using FuncionariosWA.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FuncionariosWA.DTO
 {

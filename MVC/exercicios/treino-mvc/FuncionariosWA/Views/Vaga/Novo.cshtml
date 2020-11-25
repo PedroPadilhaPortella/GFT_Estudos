@@ -1,0 +1,48 @@
+@model FuncionariosWA.DTO.VagaDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Cadastro de Locais de Trabalho / Unidade GFT</h2><br>
+<a asp-controller="Wa" asp-action="Vagas" class="btn btn-primary btn-lg">Voltar</a>
+<hr>
+<form asp-controller="Vaga" asp-action="Salvar" class="form-horizontal" method="POST">
+
+    <input type="hidden" asp-for="Id" value="0">
+
+    <label asp-for="Projeto">Projeto</label>
+    <input class="form-control" type="text" asp-for="Projeto">
+    <span asp-validation-for="Projeto"></span>
+    <hr>
+
+    <label asp-for="Descricao">Descrição da Vaga</label>
+    <input class="form-control" type="text" asp-for="Descricao">
+    <span asp-validation-for="Descricao"></span>
+    <hr>
+    
+    <label asp-for="QuantidadeDeVagas">Quantidade de Vagas</label>
+    <input class="form-control" type="number" asp-for="QuantidadeDeVagas">
+    <span asp-validation-for="QuantidadeDeVagas"></span>
+    <hr>
+    
+    <label asp-for="CodigoDaVaga">Código</label>
+    <input class="form-control" type="text" asp-for="CodigoDaVaga">
+    <span asp-validation-for="CodigoDaVaga"></span>
+    <hr>
+
+    <label asp-for="CargoId">Cargo</label>
+    <select asp-for="CargoId" asp-items='@(new SelectList(@ViewBag.Cargos, "Id", "Nome"))' class="form-control">
+        <option value="">Selecione um Cargo</option>
+    </select>
+    <span asp-validation-for="CargoId"></span>
+    <hr>
+
+    <label asp-for="TecnologiaId">Tecnologia</label>
+    <select asp-for="TecnologiaId" asp-items='@(new SelectList(@ViewBag.Tecnologias, "Id", "Nome"))' multiple class="form-control ui fluid dropdown">
+        <option value="">Selecione uma Tecnologia</option>
+    </select>
+    <span asp-validation-for="TecnologiaId"></span>
+    <hr>
+    
+    <button type="submit" class="btn btn-success btn-lg">Adicionar</button>
+</form>

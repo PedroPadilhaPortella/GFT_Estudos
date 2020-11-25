@@ -2,7 +2,6 @@ using System.Linq;
 using System;
 using FuncionariosWA.Data;
 using FuncionariosWA.Models;
-using FuncionariosWA.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 

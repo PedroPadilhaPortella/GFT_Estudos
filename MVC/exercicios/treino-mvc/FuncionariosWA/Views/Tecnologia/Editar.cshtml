@@ -1,0 +1,18 @@
+@model FuncionariosWA.DTO.TecnologiaDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Editar Tecnologias</h2><br>
+<a asp-controller="Wa" asp-action="Tecnologias" class="btn btn-primary btn-lg">Voltar</a>
+<hr>
+<form asp-controller="Tecnologia" asp-action="Atualizar" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id">
+
+    <label asp-for="Nome">Nome da Tecnologia</label>
+    <input class="form-control" type="text" asp-for="Nome" placeholder="Ex: React">
+    <span asp-validation-for="Nome"></span>
+    <hr>
+    
+    <button type="submit" class="btn btn-success btn-lg">Atualizar</button>
+</form>

@@ -1,0 +1,45 @@
+@model FuncionariosWA.DTO.FuncionarioDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Edição de Funcionários em WA</h2><br>
+<a asp-controller="Wa" asp-action="Funcionarios" class="btn btn-primary btn-lg">Voltar</a>
+<hr>
+
+<form asp-controller="Funcionario" asp-action="Atualizar" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id">
+
+    <label asp-for="Nome">Nome</label>
+    <input class="form-control" type="text" asp-for="Nome">
+    <span asp-validation-for="Nome"></span>
+    <hr>
+
+    <label asp-for="Matricula">Matrícula</label>
+    <input class="form-control" type="text" asp-for="Matricula">
+    <span asp-validation-for="Matricula"></span>
+    <hr>
+
+    <label asp-for="CargoId">Cargo</label>
+    <select asp-for="CargoId" asp-items='@(new SelectList(@ViewBag.Cargos, "Id", "Nome"))' class="form-control">
+        <option value="">Selecione um Cargo</option>
+    </select>
+    <span asp-validation-for="CargoId"></span>
+    <hr>
+
+    <label asp-for="LocalDeTrabalhoId">Local de Trabalho</label>
+    <select asp-for="LocalDeTrabalhoId" asp-items='@(new SelectList(@ViewBag.LocaisDeTrabalho, "Id", "Nome"))' class="form-control">
+        <option value="">Selecione um Local de Trabalho</option>
+    </select>
+    <span asp-validation-for="LocalDeTrabalhoId"></span>
+    <hr>
+
+    <label asp-for="TecnologiaId">Tecnologia</label>
+    <select asp-for="TecnologiaId" asp-items='@(new SelectList(@ViewBag.Tecnologias, "Id", "Nome"))' multiple class="form-control">
+        <option value="">Selecione uma Tecnologia</option>
+    </select>
+    <span asp-validation-for="TecnologiaId"></span>
+    <hr>
+    
+    <button type="submit" class="btn btn-success btn-lg">Atualizar Funcionário</button>
+</form>
