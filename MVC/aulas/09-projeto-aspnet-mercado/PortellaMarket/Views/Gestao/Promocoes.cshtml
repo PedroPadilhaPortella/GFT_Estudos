@@ -1,0 +1,61 @@
+@model IEnumerable<PortellaMarket.Models.Promocao>
+
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Promoções</h2>
+<hr>
+<a asp-controller="Gestao" asp-action="NovaPromocao" class="btn btn-success">Adicionar Promoção</a>
+<a asp-controller="Gestao" asp-action="Index" class="btn btn-primary float-right btn-lg">Voltar</a>
+<hr>
+<table class="table table-striped tavble-bordered" id="promocoes">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Produto</th>
+            <th>Porcentagem</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var promocao in Model) {
+            <tr>
+                <td>@promocao.Id</td>
+                <td>@promocao.Nome</td>
+                <td>@promocao.Produto.Nome</td>
+                <td>@promocao.Porcentagem%</td>
+                <td>
+                    <a href="/Gestao/EditarPromocao/@promocao.Id" class="btn btn-info">Editar</a>
+                    <form asp-controller="Promocoes" asp-action="Excluir" style="display: inline;">
+                        <input type="hidden" name="id" id="id" value="@promocao.Id">
+                        <button class="btn btn-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready( function () {
+        $('#promocoes').DataTable({
+            "info": false,
+            "language": {
+                "legthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "Nenhum Registro foi encontrado...",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum Registro Disponível",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": "Próxima",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    } );
+</script>

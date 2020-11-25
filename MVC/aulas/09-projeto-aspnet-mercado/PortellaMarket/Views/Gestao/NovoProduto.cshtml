@@ -1,0 +1,45 @@
+@model PortellaMarket.DTO.ProdutoDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Cadastro de Novos Produtos</h2><br>
+<a asp-controller="Gestao" asp-action="Produtos" class="btn btn-primary">Voltar</a>
+<hr>
+<form asp-controller="Produtos" asp-action="Salvar" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id" value="0">
+    
+    <label asp-for="Nome">Nome do Produto</label>
+    <input class="form-control" type="text" asp-for="Nome" placeholder="Nome do Produto">
+    <span asp-validation-for="Nome"></span>
+    <hr>
+
+    <label asp-for="CategoriaId">Categoria</label>
+    <select asp-for="CategoriaId" asp-items='@(new SelectList(@ViewBag.Categorias, "Id", "Nome"))' class="form-control"></select>
+    <hr>
+
+    <label asp-for="FornecedorId">Fornecedor</label>
+    <select asp-for="FornecedorId" asp-items='@(new SelectList(@ViewBag.Fornecedores, "Id", "Nome"))' class="form-control"></select>
+    <hr>
+
+    <label asp-for="PrecoDeCustoString">Preço de Custo</label>
+    <input class="form-control"  asp-for="PrecoDeCustoString" placeholder="Ex: 19.99" type="text">
+    <span asp-validation-for="PrecoDeCustoString"></span>
+    <hr>
+
+    <label asp-for="PrecoDeVendaString">Preco de Venda</label>
+    <input class="form-control"  asp-for="PrecoDeVendaString" placeholder="Ex: 19.99" type="text">
+    <span asp-validation-for="PrecoDeVendaString"></span>
+    <hr>
+
+    <label asp-for="Medicao">Unidade de Medida</label>
+    <select asp-for="Medicao" class="form-control">
+        <option value="0">Litros [para líquidos e medições de volume]  Ex: 12 L</option>
+        <option value="1">Quilogramas [para sólidos e medições de massa]  Ex: 7.5 Kg</option>
+        <option value="2">Unidades</option>
+    </select>
+    <span asp-validation-for="Medicao"></span>
+    <hr>
+
+    <button type="submit" class="btn btn-success">Adicionar</button>
+</form>

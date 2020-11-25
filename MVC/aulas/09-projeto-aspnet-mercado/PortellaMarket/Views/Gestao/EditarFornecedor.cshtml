@@ -1,0 +1,28 @@
+@model PortellaMarket.DTO.FornecedorDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Editar Fornecedor</h2><br>
+<a asp-controller="Gestao" asp-action="Fornecedores" class="btn btn-primary">Voltar</a>
+<hr>
+<form asp-controller="Fornecedores" asp-action="Atualizar" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id">
+    
+    <label asp-for="Nome">Nome do Fornecedor</label>
+    <input class="form-control" type="text" asp-for="Nome" placeholder="Nome do Fornecedor">
+    <span asp-validation-for="Nome"></span>
+    <hr>
+
+    <label asp-for="Email">Email do Fornecedor</label>
+    <input class="form-control" type="text" asp-for="Email" placeholder="email@dofornecedor.com">
+    <span asp-validation-for="Email"></span>
+    <hr>
+
+    <label asp-for="Telefone">Telefone do Fornecedor</label>
+    <input class="form-control" type="text" asp-for="Telefone" placeholder="XX XXXXX-XXXX">
+    <span asp-validation-for="Telefone"></span>
+    <hr>
+
+    <button type="submit" class="btn btn-success">Atualizar</button>
+</form>

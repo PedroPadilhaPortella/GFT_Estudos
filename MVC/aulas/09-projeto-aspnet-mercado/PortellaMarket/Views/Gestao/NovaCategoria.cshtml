@@ -1,0 +1,18 @@
+@model PortellaMarket.DTO.CategoriaDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Cadastro de Categorias</h2><br>
+<a asp-controller="Gestao" asp-action="Categorias" class="btn btn-primary">Voltar</a>
+<hr>
+<form asp-controller="Categorias" asp-action="Salvar" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id" value="0">
+
+    <label asp-for="Nome">Nome da Categoria</label>
+    <input class="form-control" type="text" asp-for="Nome" placeholder="Ex: Higiene">
+    <span asp-validation-for="Nome"></span>
+    <hr>
+    
+    <button type="submit" class="btn btn-success">Cadastrar</button>
+</form>

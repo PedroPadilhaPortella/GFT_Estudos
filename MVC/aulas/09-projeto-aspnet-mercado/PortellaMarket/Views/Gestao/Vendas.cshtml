@@ -1,0 +1,53 @@
+@model IEnumerable<PortellaMarket.Models.Venda> //Tipo de dado sendo recebido
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Relatório de Vendas</h2>
+<hr>
+<a asp-controller="Gestao" asp-action="Index" class="btn btn-primary btn-lg">Voltar</a>
+<hr>
+<table class="table table-striped tavble-bordered" id="vendas">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Total</th>
+            <th>Valor Pago</th>
+            <th>Troco</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vendas in Model) {
+            <tr>
+                <td>@vendas.Id</td>
+                <td>@vendas.Data</td>
+                <td>@vendas.Total</td>
+                <td>@vendas.ValorPago</td>
+                <td>@vendas.Troco</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready( function () {
+        $('#vendas').DataTable({
+            "info": false,
+            "language": {
+                "legthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "Nenhum Registro foi encontrado...",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum Registro Disponível",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": "Próxima",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    } );
+</script>

@@ -1,0 +1,73 @@
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Produtos</h2>
+<hr>
+<a asp-controller="Gestao" asp-action="NovoProduto" class="btn btn-success">Adicionar Produtos</a>
+<a asp-controller="Gestao" asp-action="Index" class="btn btn-primary float-right btn-lg">Voltar</a>
+<hr>
+<table class="table table-striped tavble-bordered" id="produtos">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Fornecedor</th>
+            <th>Preço de Custo</th>
+            <th>Preço de Venda</th>
+            <th>Unidade de Medida</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var produto in Model) {
+            <tr>
+                <td>@produto.Id</td>
+                <td>@produto.Nome</td>
+                <td>@produto.Categoria.Nome</td>
+                <td>@produto.Fornecedor.Nome</td>
+                <td>@produto.PrecoDeCusto</td>
+                <td>@produto.PrecoDeVenda</td>
+                <td>
+                    @if(produto.Medicao == 0){
+                        <span>Litros</span>
+                    }else if(produto.Medicao == 1){
+                        <span>Quilogramas</span>
+                    }else if(produto.Medicao == 2){
+                        <span>Unidades</span>
+                    }
+                </td>
+                <td>
+                    <a href="/Gestao/EditarProduto/@produto.Id" class="btn btn-info">Editar</a>
+                    <form asp-controller="Produtos" asp-action="Excluir" style="display: inline;">
+                        <input type="hidden" name="id" id="id" value="@produto.Id">
+                        <button class="btn btn-danger">Excluir</button> 
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready( function () {
+        $('#produtos').DataTable({
+            "info": false,
+            "language": {
+                "legthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "Nenhum Registro foi encontrado...",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum Registro Disponível",
+                "search": "Buscar",
+                "paginate": {
+                    "first": "Primeira",
+                    "last": "Última",
+                    "next": "Próxima",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    } );
+</script>

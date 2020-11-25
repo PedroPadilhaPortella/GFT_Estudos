@@ -1,0 +1,22 @@
+@model PortellaMarket.Models.Estoque
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h2>Editar Estoque</h2><br>
+<a asp-controller="Gestao" asp-action="Estoque" class="btn btn-primary">Voltar</a>
+<hr>
+<form asp-controller="Estoque" asp-action="Atualizar" class="form-horizontal" method="POST">
+    <input type="hidden" asp-for="Id">
+    
+    <label asp-for="ProdutoId">Produto</label>
+    <select asp-for="ProdutoId" asp-items='@(new SelectList(@ViewBag.Produtos, "Id", "Nome"))' class="form-control"></select>
+    <hr>
+
+    <label asp-for="Quantidade">Quantidade</label>
+    <input asp-for="Quantidade" type="number" min="0" class="form-control" placeholder="Ex: 100">
+    <span asp-validation-for="Quantidade"></span>
+    <hr>
+
+    <button type="submit" class="btn btn-success">Atualizar</button>
+</form>
