@@ -12,5 +12,15 @@ namespace NotaFiscal.Models
 
         [JsonIgnore]
         public bool Status { get; set; }
+
+        public Cliente() { }
+        public Cliente(int id, string nome, string cpf, string cep, string telefone, bool status){
+            this.Id = id;
+            this.Nome= nome;
+            this.CPF = cpf;
+            this.CEP = cep;
+            this.Telefone = telefone;
+            this.Status = status;
+        }
     }
 }

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NotaFiscal.Data;
 
 namespace NotaFiscal.Migrations
 {
     [DbContext(typeof(NotaFiscalContext))]
-    partial class NotaFiscalContextModelSnapshot : ModelSnapshot
+    [Migration("20201126161553_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,26 +103,6 @@ namespace NotaFiscal.Migrations
                     b.HasIndex("ProdutoId");
 
                     b.ToTable("ProdutosNotaFiscal");
-                });
-
-            modelBuilder.Entity("NotaFiscal.Models.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Senha")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("NotaFiscal.Models.NotaFiscal", b =>

@@ -9,6 +9,7 @@ namespace NotaFiscal.Data
         public DbSet<NotaFiscal.Models.NotaFiscal> NotasFiscais { get; set; }
         public DbSet<ProdutoNotaFiscal> ProdutosNotaFiscal { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         public NotaFiscalContext() { }
         public NotaFiscalContext(DbContextOptions<NotaFiscalContext> options) : base(options) { }

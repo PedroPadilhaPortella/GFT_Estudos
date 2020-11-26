@@ -1,44 +1,47 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NotaFiscal.Data;
 using NotaFiscal.DTO;
+using NotaFiscal.HATEOAS;
 using NotaFiscal.Models;
 
 namespace NotaFiscal.Controllers
 {
     [ApiController]
     [Route("v1/[controller]")]
+    [Authorize(Roles = "Admin,Employee")]
     public class NotaFiscalController : ControllerBase
     {
         private readonly NotaFiscalContext Database;
+        private Hateoas HATEOAS;
         public NotaFiscalController(NotaFiscalContext database)
         {
             this.Database = database;
+
+            HATEOAS = new Hateoas("localhost:5001/v1/NotaFiscal");
+            HATEOAS.AddAction("get_notafiscal", "GET");
+            HATEOAS.AddAction("edit_notafiscal", "PATCH");
         }
 
         [HttpGet]
         public IActionResult GetNotaFiscal(){
             try{
-                var notaFiscal = Database.NotasFiscais
-                .Include(n => n.Cliente)
-                .Include(n => n.ProdutosNotaFiscal).ThenInclude(n => n.Produto)
-                .ToList();
+                var notasFiscais = Database.NotasFiscais.Include(n => n.Cliente).Include(n => n.ProdutosNotaFiscal).ThenInclude(n => n.Produto).ToList();
 
-                List<NotaFiscalView> dataList = new List<NotaFiscalView>();
-                foreach(var nota in notaFiscal) {
-                    NotaFiscalView data = new NotaFiscalView();
-                    data.Id = nota.Id;
-                    data.Valor = nota.Valor;
-                    data.DataEmissao = nota.DataEmissao;
-                    data.Cliente = nota.Cliente;
-                    data.ProdutosNotaFiscal = nota.ProdutosNotaFiscal;
-                    dataList.Add(data);
+                List<NotaFiscalH> notasfiscaisHATEOAS = new List<NotaFiscalH>();
+
+                foreach(var notaFiscal in notasFiscais){
+                    NotaFiscalH notafiscalHATEOAS = new NotaFiscalH();
+                    notafiscalHATEOAS.notaFiscal = notaFiscal;
+                    notafiscalHATEOAS.links = HATEOAS.GetActions(notaFiscal.Id.ToString()); 
+                    notasfiscaisHATEOAS.Add(notafiscalHATEOAS); 
                 }
 
-                return Ok(notaFiscal.ToArray());
+                return Ok(notasfiscaisHATEOAS);
             } catch(Exception e) {
                 return BadRequest(new {msg = e});
             }
@@ -46,7 +49,22 @@ namespace NotaFiscal.Controllers
 
         [HttpGet("{id}")]
         public IActionResult GetNotaFiscalById(int id){
-            return Ok("ok");
+            if(id > 0){
+                try {
+                    var notaFiscal = Database.NotasFiscais.Include(n => n.Cliente).Include(n => n.ProdutosNotaFiscal).ThenInclude(n => n.Produto).First(N => N.Id == id);
+                    NotaFiscalH notaFiscalHATEOAS = new NotaFiscalH();
+                    notaFiscalHATEOAS.notaFiscal = notaFiscal;
+                    notaFiscalHATEOAS.links = HATEOAS.GetActions(notaFiscal.Id.ToString());
+
+                    return Ok(notaFiscalHATEOAS);
+                } catch(Exception e) {
+                    Response.StatusCode = 404;
+                    return new ObjectResult(new {msg = $"Nota Fiscal com Id {id} não encontrado!", log = e});
+                }
+            }else{
+                    Response.StatusCode = 404;
+                    return new ObjectResult(new {msg = $"Nota Fiscal com Id {id} não encontrado!"});
+            }
         }
 
         [HttpPost]

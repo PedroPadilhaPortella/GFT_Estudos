@@ -1,34 +1,60 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NotaFiscal.Data;
 using NotaFiscal.DTO;
+using NotaFiscal.HATEOAS;
 using NotaFiscal.Models;
 
 namespace NotaFiscal.Controllers
 {
     [ApiController]
     [Route("v1/[controller]")]
+    [Authorize(Roles = "Admin,Employee")]
     public class ClientesController : ControllerBase
     {
         private readonly NotaFiscalContext _database;
 
+        private Hateoas HATEOAS;
+
         public ClientesController(NotaFiscalContext database)
         {
             this._database = database;
+
+            HATEOAS = new Hateoas("localhost:5001/v1/Clientes");
+            HATEOAS.AddAction("get_cliente", "GET");
+            HATEOAS.AddAction("delete_cliente", "DELETE");
+            HATEOAS.AddAction("edit_cliente", "PATCH");
         }
 
         [HttpGet]
         public IActionResult GetCliente(){
             var clientes = _database.Clientes.ToList();
-            return Ok(clientes);
+
+            List<ClienteH> clientesHATEOAS = new List<ClienteH>();
+
+            foreach(var cliente in clientes){
+                ClienteH clienteHATEOAS = new ClienteH();
+                clienteHATEOAS.cliente = cliente;
+                clienteHATEOAS.links = HATEOAS.GetActions(cliente.Id.ToString()); 
+                clientesHATEOAS.Add(clienteHATEOAS); 
+            }
+
+            return Ok(clientesHATEOAS);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetClienteById(int id){
             try {
                 Cliente cliente = _database.Clientes.First(c => c.Id == id);
-                return Ok(cliente);
+
+                ClienteH clienteHATEOAS = new ClienteH();
+                clienteHATEOAS.cliente = cliente;
+                clienteHATEOAS.links = HATEOAS.GetActions(cliente.Id.ToString());
+                
+                return Ok(clienteHATEOAS);
             } catch (Exception) {
                 Response.StatusCode = 404;
                 return new ObjectResult(new { msg = "Cliente não encontrado!" });

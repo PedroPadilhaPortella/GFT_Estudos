@@ -1,8 +1,11 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using NotaFiscal.Data;
 
 namespace NotaFiscal
@@ -26,6 +29,24 @@ namespace NotaFiscal
             services.AddSwaggerGen(config => {
                     config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo{Title = "API de Nota Fiscal", Version = "v1"});
             });
+
+            // Configurando o metodo de autenticação, via JWT, e como o sistema deve ler o Token
+            string chaveDeSeguranca = "secret_invoice_key";//Chave de Segurança
+            var chaveSimetrica  = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(chaveDeSeguranca)); //chave simétrica
+            
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+
+                    //Dados de Validação do JWT
+                    ValidIssuer = "notafiscalAPI",
+                    ValidAudience = "public_user",
+                    IssuerSigningKey = chaveSimetrica 
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +55,10 @@ namespace NotaFiscal
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
