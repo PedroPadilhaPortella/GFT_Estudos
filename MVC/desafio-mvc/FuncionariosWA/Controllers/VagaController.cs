@@ -61,7 +61,7 @@ namespace FuncionariosWA.Controllers
 
         public IActionResult Editar(int id)
         {
-            var vaga = Database.Vagas.Include(v => v.Cargo)./*Include(v => v.Tecnologia).*/First(v => v.Id == id);
+            var vaga = Database.Vagas.Include(v => v.Cargo).First(v => v.Id == id);
             VagaDTO vagaView = new VagaDTO();
             vagaView.Id = vaga.Id;
             vagaView.Projeto = vaga.Projeto;

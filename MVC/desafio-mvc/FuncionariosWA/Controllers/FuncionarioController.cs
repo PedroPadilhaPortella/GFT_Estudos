@@ -65,7 +65,7 @@ namespace FuncionariosWA.Controllers
 
         public IActionResult Editar(int id)
         {
-            var funcionario = Database.Funcionarios.Include(f => f.LocalDeTrabalho).Include(f => f.Cargo)/*.Include(f => f.Tecnologia)*/.First(f => f.Id == id);
+            var funcionario = Database.Funcionarios.Include(f => f.LocalDeTrabalho).Include(f => f.Cargo).First(f => f.Id == id);
             FuncionarioDTO funcionarioView = new FuncionarioDTO();
             funcionarioView.Id = funcionario.Id;
             funcionarioView.Nome = funcionario.Nome;
