@@ -17,6 +17,9 @@ namespace NotaFiscal.Controllers
             this.Database = database;
         }
 
+        /// <summary>
+        ///Semear dados de base
+        /// </summary>
         [HttpPost]
         public IActionResult SeedData()
         {
@@ -24,11 +27,11 @@ namespace NotaFiscal.Controllers
                 if (!(Database.Clientes.Any()))
                 {
                     Database.AddRange(
-                            new Cliente(1, "Pedro Portella", "pedro@gmail.com", Crypter.MD5.Crypt("pedro2020"), "00000000-00", "Cliente", true, new DateTime(2020, 12, 02)),
-                            new Cliente(2, "Thomas Shelby", "thomas@gmail.com", Crypter.MD5.Crypt("thomas2020"), "04562343-30", "Cliente", true, new DateTime(2020, 12, 02)),
-                            new Cliente(3, "Ragnar Lothbrok", "ragnar@gmail.com", Crypter.MD5.Crypt("ragnar2020"), "08823430-90", "Cliente", true, new DateTime(2020, 12, 02)),
-                            new Cliente(4, "Frank Castle", "frank@gmail.com", Crypter.MD5.Crypt("frank2020"), "432434234324-00", "Cliente", true, new DateTime(2020, 12, 02)),
-                            new Cliente(5, "Conan Doyle", "conan@gmail.com", Crypter.MD5.Crypt("conan2020"), "00234234232-00", "Cliente", true, new DateTime(2020, 12, 02))
+                            new Cliente(1, "Pedro Portella", "pedro@gmail.com", Crypter.Sha256.Crypt("pedro2020"), "00000000-00", true, new DateTime(2020, 12, 02)),
+                            new Cliente(2, "Thomas Shelby", "thomas@gmail.com", Crypter.Sha256.Crypt("thomas2020"), "04562343-30", true, new DateTime(2020, 12, 02)),
+                            new Cliente(3, "Ragnar Lothbrok", "ragnar@gmail.com", Crypter.Sha256.Crypt("ragnar2020"), "08823430-90", true, new DateTime(2020, 12, 02)),
+                            new Cliente(4, "Frank Castle", "frank@gmail.com", Crypter.Sha256.Crypt("frank2020"), "432434234324-00", true, new DateTime(2020, 12, 02)),
+                            new Cliente(5, "Conan Doyle", "conan@gmail.com", Crypter.Sha256.Crypt("conan2020"), "00234234232-00", true, new DateTime(2020, 12, 02))
                     );
                 }
 
@@ -98,6 +101,17 @@ namespace NotaFiscal.Controllers
                         new ProdutoVenda(4, Database.Vendas.First(v => v.Id == 5), Database.Produtos.First(p => p.Id == 2)),
                         new ProdutoVenda(2, Database.Vendas.First(v => v.Id == 5), Database.Produtos.First(p => p.Id == 7)),
                         new ProdutoVenda(6, Database.Vendas.First(v => v.Id == 5), Database.Produtos.First(p => p.Id == 3))
+                    );
+                }
+
+                if (!(Database.Usuarios.Any()))
+                {
+                    Database.AddRange(
+                        new Usuario(1, "pedro@gft.com", Crypter.Sha256.Crypt("pedro@gft.com")),
+                        new Usuario(2, "clecio@gft.com", Crypter.Sha256.Crypt("clecio@gft.com")),
+                        new Usuario(3, "danilo@gft.com", Crypter.Sha256.Crypt("danilo@gft.com")),
+                        new Usuario(4, "emanuel@gft.com", Crypter.Sha256.Crypt("emanuel@gft.com")),
+                        new Usuario(5, "lucy@gft.com", Crypter.Sha256.Crypt("lucy@gft.com"))
                     );
                 }
 

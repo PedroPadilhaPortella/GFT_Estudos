@@ -10,6 +10,7 @@ namespace desafio.Data
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ProdutoVenda> ProdutosVendas { get; set; }
         public DbSet<Venda> Vendas { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DataContext(){ }
         public DataContext(DbContextOptions<DataContext> options): base (options) { }
 

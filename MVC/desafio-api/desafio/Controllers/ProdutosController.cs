@@ -7,19 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using desafio.HATEOAS;
 
 namespace desafio.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ProdutosController : ControllerBase
     {
         private readonly DataContext Database;
         private readonly IMapper Mapper;
+        private Hateoas HATEOAS;
         public ProdutosController(DataContext database, IMapper mapper)
         {
             this.Mapper = mapper;
             Database = database;
+            HATEOAS = new Hateoas("localhost:5001/api/produtos");
+            HATEOAS.AddAction("get_produto", "GET");
+            HATEOAS.AddAction("edit_produto", "PATCH");
+            HATEOAS.AddAction("update_produto", "PUT");
+            HATEOAS.AddAction("delete_produto", "DELETE");
         }
 
 
@@ -27,8 +36,17 @@ namespace desafio.Controllers
         [HttpGet]
         public IActionResult Get() {
             try {
-                var produtos = Database.Produtos.Where(c => c.Status == true).Include(p => p.Fornecedor).ToList();
-                return Ok(Mapper.Map<IEnumerable<ProdutoDTO>>(produtos));
+                var produtosDB = Database.Produtos.Where(c => c.Status == true).Include(p => p.Fornecedor).ToList();
+                var produtos = Mapper.Map<IEnumerable<ProdutoDTO>>(produtosDB);
+                List<ProdutoHATEOAS> produtosHATEOAS = new List<ProdutoHATEOAS>();
+                foreach (var produto in produtos)
+                {
+                    ProdutoHATEOAS produtoHATEOAS = new ProdutoHATEOAS();
+                    produtoHATEOAS.produto = produto;
+                    produtoHATEOAS.links = HATEOAS.GetActions(produto.Id.ToString());
+                    produtosHATEOAS.Add(produtoHATEOAS);
+                }
+                return Ok(produtosHATEOAS);
             } catch (Exception e) {
                 Response.StatusCode = 500;
                 return new ObjectResult(new { msg = "Nenhum Produto encontrado!", erro = e.Message });
@@ -38,8 +56,17 @@ namespace desafio.Controllers
         [HttpGet("asc")]
         public IActionResult GetOrderByNameAscending() {
             try {
-                var produtos = Database.Produtos.Where(p => p.Status == true).Include(p => p.Fornecedor).OrderBy(p => p.Nome).ToList();
-                return Ok(Mapper.Map<IEnumerable<ProdutoDTO>>(produtos));
+                var produtosDB = Database.Produtos.Where(p => p.Status == true).Include(p => p.Fornecedor).OrderBy(p => p.Nome).ToList();
+                var produtos = Mapper.Map<IEnumerable<ProdutoDTO>>(produtosDB);
+                List<ProdutoHATEOAS> produtosHATEOAS = new List<ProdutoHATEOAS>();
+                foreach (var produto in produtos)
+                {
+                    ProdutoHATEOAS produtoHATEOAS = new ProdutoHATEOAS();
+                    produtoHATEOAS.produto = produto;
+                    produtoHATEOAS.links = HATEOAS.GetActions(produto.Id.ToString());
+                    produtosHATEOAS.Add(produtoHATEOAS);
+                }
+                return Ok(produtosHATEOAS);
             } catch (Exception e) {
                 Response.StatusCode = 500;
                 return new ObjectResult(new { msg = "Nenhum Produto encontrado!", erro = e.Message });
@@ -49,8 +76,17 @@ namespace desafio.Controllers
         [HttpGet("desc")]
         public IActionResult GetOrderByNameDescending() {
             try {
-                var produtos = Database.Produtos.Where(p => p.Status == true).Include(p => p.Fornecedor).OrderByDescending(p => p.Nome).ToList();
-                return Ok(Mapper.Map<IEnumerable<ProdutoDTO>>(produtos));
+                var produtosDB = Database.Produtos.Where(p => p.Status == true).Include(p => p.Fornecedor).OrderByDescending(p => p.Nome).ToList();
+                var produtos = Mapper.Map<IEnumerable<ProdutoDTO>>(produtosDB);
+                List<ProdutoHATEOAS> produtosHATEOAS = new List<ProdutoHATEOAS>();
+                foreach (var produto in produtos)
+                {
+                    ProdutoHATEOAS produtoHATEOAS = new ProdutoHATEOAS();
+                    produtoHATEOAS.produto = produto;
+                    produtoHATEOAS.links = HATEOAS.GetActions(produto.Id.ToString());
+                    produtosHATEOAS.Add(produtoHATEOAS);
+                }
+                return Ok(produtosHATEOAS);
             } catch (Exception e) {
                 Response.StatusCode = 500;
                 return new ObjectResult(new { msg = "Nenhum Produto encontrado!", erro = e.Message });
@@ -60,8 +96,12 @@ namespace desafio.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id) {
             try {
-                var produto = Database.Produtos.Where(c => c.Status == true).Include(p => p.Fornecedor).First(c => c.Id == id);
-                return Ok(Mapper.Map<ProdutoDTO>(produto));
+                var produtoDB = Database.Produtos.Where(c => c.Status == true).Include(p => p.Fornecedor).First(c => c.Id == id);
+                var produto = Mapper.Map<ProdutoDTO>(produtoDB);
+                ProdutoHATEOAS produtoHATEOAS = new ProdutoHATEOAS();
+                produtoHATEOAS.produto = produto;
+                produtoHATEOAS.links = HATEOAS.GetActions(produto.Id.ToString());
+                return Ok(produtoHATEOAS);
             } catch (Exception e) {
                 Response.StatusCode = 500;
                 return new ObjectResult(new { msg = $"Produto com Id {id} não encontrado!", erro = e.Message });
@@ -72,8 +112,12 @@ namespace desafio.Controllers
         [HttpGet("nome/{nome}")]
         public IActionResult GetByName(string nome) {
             try {
-                var produto = Database.Produtos.Where(c => c.Status == true).Include(p => p.Fornecedor).First(c => c.Nome.Contains(nome));
-                return Ok(Mapper.Map<ProdutoDTO>(produto));
+                var produtoDB = Database.Produtos.Where(c => c.Status == true).Include(p => p.Fornecedor).First(c => c.Nome.Contains(nome));
+                var produto = Mapper.Map<ProdutoDTO>(produtoDB);
+                ProdutoHATEOAS produtoHATEOAS = new ProdutoHATEOAS();
+                produtoHATEOAS.produto = produto;
+                produtoHATEOAS.links = HATEOAS.GetActions(produto.Id.ToString());
+                return Ok(produtoHATEOAS);
             } catch (Exception e) {
                 Response.StatusCode = 500;
                 return new ObjectResult(new { msg = $"Produto com nome {nome} não encontrado!", erro = e.Message });
@@ -83,6 +127,9 @@ namespace desafio.Controllers
 
 
 
+        /// <summary>
+        /// Método responsável por cadastrar um Produto, insira apenas o nome, codigo, valor, promocao, valorPromocao, quantidade, fornecedorId e categoria, os outros campos serão gerados automaticamente.
+        /// </summary>
         [HttpPost]
         public IActionResult Post([FromBody] ProdutoDTO produto) {
             try {
@@ -131,6 +178,11 @@ namespace desafio.Controllers
         }
 
 
+
+
+        /// <summary>
+        /// Método responsável por atualizar completamente um Fornecedor, insira apenas o nome, codigo, valor, promocao, valorPromocao, quantidade, fornecedorId e categoria, os outros campos não podem ser atualizados.
+        /// </summary>
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] ProdutoDTO produtoBody)
         {
@@ -177,6 +229,10 @@ namespace desafio.Controllers
         }
 
 
+
+        /// <summary>
+        /// Método responsável por atualizar parcialmente um Produto, insira opcionalmente o nome, codigo, valor, promocao, valorPromocao, quantidade, fornecedorId e categoria, os outros campos não podem ser atualizados.
+        /// </summary>
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, [FromBody] ProdutoDTO produtoBody) {
             if (id > 0)
@@ -217,6 +273,10 @@ namespace desafio.Controllers
         }
 
 
+
+        /// <summary>
+        /// Método responsável por remover um Produto, mas não se preocupe, ele não será apagado do banco, apenas desativado, pois ele pode estar sendo usado nos registros de vendas.
+        /// </summary>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id) {
             if (id > 0) {

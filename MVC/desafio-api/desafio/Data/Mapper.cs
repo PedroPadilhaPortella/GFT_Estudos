@@ -10,7 +10,6 @@ namespace desafio.Data
         {
             CreateMap<Produto, ProdutoDTO>().ReverseMap();
             CreateMap<Produto, ProdutoAuxiliar>().ReverseMap();
-            CreateMap<Cliente, ClienteDTO>().ReverseMap();
             CreateMap<Fornecedor, FornecedorDTO>().ReverseMap();
             CreateMap<Fornecedor, FornecedorAuxiliar>().ReverseMap();
             CreateMap<Venda, VendaDTO>().ReverseMap();

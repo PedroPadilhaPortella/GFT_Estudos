@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>desafio</name>
+    </assembly>
+    <members>
+        <member name="M:desafio.Controllers.ClientesController.Post(desafio.Models.Cliente)">
+            <summary>
+            Método responsável por cadastrar um Cliente, insira apenas o nome, email, senha e documento, os outros campos serão gerados automaticamente.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.ClientesController.Put(System.Int32,desafio.Models.Cliente)">
+            <summary>
+            Método responsável por atualizar completamente um Cliente, insira apenas o nome, email, senha e documento, os outros campos não podem ser atualizados.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.ClientesController.PatchOrActive(System.Int32,desafio.Models.Cliente)">
+            <summary>
+            Método responsável por atualizar parcialmente um Cliente, insira opcionalmente o nome, email, senha e documento, os outros campos não podem ser atualizados.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.ClientesController.Delete(System.Int32)">
+            <summary>
+            Método responsável por remover um cliente, mas não se preocupe, ele não será apagado do banco, apenas desativado, pois ele pode estar sendo usado nos registros de vendas.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.FornecedoresController.Post(desafio.Models.Fornecedor)">
+            <summary>
+            Método responsável por cadastrar um Fornecedor, insira apenas o nome e cnpj, os outros campos serão gerados automaticamente.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.FornecedoresController.Put(System.Int32,desafio.Models.Fornecedor)">
+            <summary>
+            Método responsável por atualizar completamente um Fornecedor, insira apenas o nome e cnpj, os outros campos não podem ser atualizados.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.FornecedoresController.PatchOrActive(System.Int32,desafio.Models.Fornecedor)">
+            <summary>
+            Método responsável por atualizar parcialmente um Fornecedor, insira opcionalmente o nome e cnpj, os outros campos não podem ser atualizados.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.FornecedoresController.Delete(System.Int32)">
+            <summary>
+            Método responsável por remover um Fornecedor, mas não se preocupe, ele não será apagado do banco, apenas desativado, pois ele pode estar sendo usado nos registros de produtos.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.ProdutosController.Post(desafio.DTO.ProdutoDTO)">
+            <summary>
+            Método responsável por cadastrar um Produto, insira apenas o nome, codigo, valor, promocao, valorPromocao, quantidade, fornecedorId e categoria, os outros campos serão gerados automaticamente.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.ProdutosController.Put(System.Int32,desafio.DTO.ProdutoDTO)">
+            <summary>
+            Método responsável por atualizar completamente um Fornecedor, insira apenas o nome, codigo, valor, promocao, valorPromocao, quantidade, fornecedorId e categoria, os outros campos não podem ser atualizados.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.ProdutosController.Patch(System.Int32,desafio.DTO.ProdutoDTO)">
+            <summary>
+            Método responsável por atualizar parcialmente um Produto, insira opcionalmente o nome, codigo, valor, promocao, valorPromocao, quantidade, fornecedorId e categoria, os outros campos não podem ser atualizados.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.ProdutosController.Delete(System.Int32)">
+            <summary>
+            Método responsável por remover um Produto, mas não se preocupe, ele não será apagado do banco, apenas desativado, pois ele pode estar sendo usado nos registros de vendas.
+            </summary>
+        </member>
+        <member name="M:desafio.Controllers.UsuariosController.Registrar(desafio.Models.Usuario)">
+             <summary>
+            Registrar/Cadastrar usuários, 
+            Exemplo:  { "email": "pedro@gft.com", "senha": "pedro@gft.com" }
+             </summary>
+        </member>
+        <member name="M:desafio.Controllers.UsuariosController.Login(desafio.Models.Usuario)">
+             <summary>
+            Login de usuários, que retorna um Token de validação.
+            Exemplo:  { "email": "pedro@gft.com", "senha": "pedro@gft.com" }
+             </summary>
+        </member>
+        <member name="M:desafio.Controllers.VendasController.Post(desafio.DTO.VendaDTO)">
+             <summary>
+             Método responsável por registrar uma Venda, insira apenas o clienteId, fornecedorId e um array de ProdutosVenda com cada produtoId e sua quantidade,
+             os outros campos serão gerados automaticamente.
+            Exemplo:  { "clienteId": 1, "fornecedorId": 7, "produtosVenda": [ { "quantidade": 5, "produtoId": 3 }, { "quantidade": 7, "produtoId": 6 } ] }
+             </summary>
+        </member>
+        <member name="M:desafio.Controllers.VendasController.Put(System.Int32,desafio.DTO.VendaDTO)">
+             <summary>
+             Método responsável por atualizar completamente um Fornecedor, insira apenas o clienteId, fornecedorId e um array de ProdutosVenda com cada produtoId e sua quantidade,
+             os outros campos não podem ser atualizados.
+            Exemplo:  { "clienteId": 1, "fornecedorId": 7, "produtosVenda": [ { "quantidade": 5, "produtoId": 3 }, { "quantidade": 7, "produtoId": 6 } ] }
+             </summary>
+        </member>
+        <member name="M:desafio.Controllers.VendasController.Patch(System.Int32,desafio.DTO.VendaDTO)">
+             <summary>
+             Método responsável por atualizar parcialmente um Fornecedor, insira opcionalmente o clienteId, fornecedorId e um array de ProdutosVenda com cada produtoId e sua quantidade,
+             os outros campos não podem ser atualizados.
+            Exemplo:  { "clienteId": 1, "fornecedorId": 7, "produtosVenda": [ { "quantidade": 5, "produtoId": 3 }, { "quantidade": 7, "produtoId": 6 } ] }
+             </summary>
+        </member>
+        <member name="M:NotaFiscal.Controllers.SeedController.SeedData">
+             <summary>
+            Semear dados de base
+             </summary>
+        </member>
+    </members>
+</doc>

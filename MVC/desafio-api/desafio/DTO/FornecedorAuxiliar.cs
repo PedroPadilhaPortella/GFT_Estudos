@@ -6,7 +6,6 @@ namespace desafio.DTO
     public class FornecedorAuxiliar
     {
         public int Id { get; set; }
-        // [JsonIgnore]
         public string Nome { get; set; }
         [JsonIgnore]
         public string CNPJ { get; set; }
