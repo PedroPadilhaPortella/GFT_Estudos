@@ -9,42 +9,38 @@ using desafio.Data;
 namespace desafio.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201203181247_AddUsuariosTable")]
-    partial class AddUsuariosTable
+    [Migration("20201208130609_InitialBySqLite")]
+    partial class InitialBySqLite
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("ProductVersion", "3.1.10");
 
             modelBuilder.Entity("desafio.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Documento")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("NivelAcesso")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -55,16 +51,16 @@ namespace desafio.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("CNPJ")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -75,37 +71,37 @@ namespace desafio.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Categoria")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Codigo")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("FornecedorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Imagem")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("Promocao")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Quantidade")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Status")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Valor")
-                        .HasColumnType("double");
+                        .HasColumnType("REAL");
 
                     b.Property<double>("ValorPromocao")
-                        .HasColumnType("double");
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 
@@ -117,13 +113,13 @@ namespace desafio.Migrations
             modelBuilder.Entity("desafio.Models.ProdutoVenda", b =>
                 {
                     b.Property<int>("VendaId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Quantidade")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("VendaId", "ProdutoId");
 
@@ -136,13 +132,13 @@ namespace desafio.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Senha")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -153,19 +149,19 @@ namespace desafio.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("ClienteId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DataVenda")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("FornecedorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Total")
-                        .HasColumnType("double");
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

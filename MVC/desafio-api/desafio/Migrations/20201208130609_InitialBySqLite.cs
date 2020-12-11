@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace desafio.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialBySqLite : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,12 +12,12 @@ namespace desafio.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Senha = table.Column<string>(nullable: true),
                     Documento = table.Column<string>(nullable: true),
-                    NivelAcesso = table.Column<string>(nullable: true),
+                    Status = table.Column<bool>(nullable: false),
                     DataCadastro = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
@@ -31,9 +30,10 @@ namespace desafio.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(nullable: true),
-                    CNPJ = table.Column<string>(nullable: true)
+                    CNPJ = table.Column<string>(nullable: true),
+                    Status = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,11 +41,25 @@ namespace desafio.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Email = table.Column<string>(nullable: true),
+                    Senha = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Produtos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Nome = table.Column<string>(nullable: true),
                     Codigo = table.Column<string>(nullable: true),
                     Valor = table.Column<double>(nullable: false),
@@ -54,6 +68,7 @@ namespace desafio.Migrations
                     Categoria = table.Column<string>(nullable: true),
                     Imagem = table.Column<string>(nullable: true),
                     Quantidade = table.Column<int>(nullable: false),
+                    Status = table.Column<bool>(nullable: false),
                     FornecedorId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -72,7 +87,7 @@ namespace desafio.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     FornecedorId = table.Column<int>(nullable: true),
                     ClienteId = table.Column<int>(nullable: true),
                     Total = table.Column<double>(nullable: false),
@@ -145,6 +160,9 @@ namespace desafio.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ProdutosVendas");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Produtos");
