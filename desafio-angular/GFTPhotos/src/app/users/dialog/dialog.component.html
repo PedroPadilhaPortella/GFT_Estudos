@@ -1,0 +1,18 @@
+<div>
+
+    <h1><strong>{{ data.name }}</strong></h1>
+    <hr>
+    <p><strong>Usuário:</strong> {{ data.username }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>Endereço:</strong> Rua {{ data.street }}, {{ data.suite }}, {{ data.city}}</p>
+    <p><strong>CEP: </strong> {{ data.cep }}</p>
+    <p><strong>Localização: </strong> {{ data.lat }}, {{ data.long }}</p>
+    <p><strong>Telefone:</strong> {{ data.phone }}</p>
+    <p><strong>Site:</strong> {{ data.website }}</p>
+    <p><strong>Empresa:</strong> {{ data.company }}</p>
+    <hr>
+
+    <div>
+        <button class="btn btn-sm" (click)="close()">Fechar</button>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container mx-auto">
+    <div class="m-5">
+        <h1><i class="fa fa-camera fa-2x mx-3"></i> Fotos</h1>
+    </div>
+</div>
+
+<app-search (onTyping)="filter = $event" [value]="filter"></app-search>
+
+<div class="card-group mx-5">
+    <div  *ngFor="let photo of photos | filterByDescription: filter | paginate: { itemsPerPage: 24, currentPage: paginaAtual }" class="col-2" DarkenOnHover brightness="70%">
+        <div class="card border-light text-center" style="width: 18rem;" (click)="openDialog(photo)">
+            <img [src]="photo.thumbnailUrl" [alt]="photo.title" class="img-thumbnail rounded mx-auto" width="150px"
+                height="150px">
+            <div class="card-body text-justify">
+                <div class="text-center p-1">
+                    <p>{{ photo.title}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="py-5">
+    <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo">
+    </pagination-controls>
+</div>

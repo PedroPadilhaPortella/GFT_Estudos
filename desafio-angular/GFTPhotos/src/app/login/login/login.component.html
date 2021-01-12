@@ -1,0 +1,19 @@
+<div class="text-center container mt-5" style="width: 300px;">
+
+    <form [formGroup]="loginForm" class="form-signin" (submit)="login()">
+        
+        <img class="mb-4" src="../../../assets/angular.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal mb-2">Please Login</h1>
+
+        <input formControlName="username" type="text" id="inputEmail" class="form-control mb-2" placeholder="Username" autofocus>
+        <app-message *ngIf="loginForm.get('username').errors?.required" text="Username is required!"></app-message>
+
+        <input formControlName="email" type="email" id="inputpassword" class="form-control mb-2" placeholder="Email">
+        <app-message *ngIf="loginForm.get('email').errors?.required" text="Email is required!"></app-message>
+
+        <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021 - gft</p>
+        <p class="mt-5 mb-3 text-muted">Use username 'Bret' and email 'Sincere@april.biz'</p>
+    </form>
+
+</div>

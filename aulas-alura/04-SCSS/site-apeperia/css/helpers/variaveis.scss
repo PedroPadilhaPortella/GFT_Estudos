@@ -1,0 +1,25 @@
+/** Variáveis de CSS **/
+:root {
+  --main-color: #c24e4b;
+}
+
+// Variáveis de SCSS
+$cor-padrao: darken(#c24e4b, 0%);
+$cor-auxiliar: lighten(#1e2c35, 0%);
+$box-shadow: rgba(0, 0, 0, 0.3);
+$cor-branca: #fff;
+$raio: 0.3em;
+$raio-grande: 50px;
+
+$ponto-de-quebra: 980px;
+$md-mobile: "(max-width: 980px)";
+
+$fontsize: 10px;
+
+//Funções de cores
+
+// darken();
+// lighten();
+// adjust-hue();
+// saturate(); 
+// complement();

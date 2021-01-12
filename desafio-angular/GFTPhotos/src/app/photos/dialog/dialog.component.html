@@ -1,0 +1,16 @@
+<div>
+    
+    <div class="d-inline-flex">
+        <h2 class="d-inline">Detalhes</h2>
+        <button style="margin-left: 530px;" class="btn btn-sm" (click)="close()"><i class="fa fa-close"></i></button>
+    </div>
+
+    <hr>
+    <img [src]="data.url" [alt]="data.description" class="img-thumbnail rounded mx-auto" width="600px" height="600px">
+    <p>Description: {{ data.description}}</p>
+    
+    <div class="d-flex flex-row-reverse">
+        <button class="btn btn-danger btn-sm" (click)="close()">Close</button>
+        <hr>
+    </div>
+</div>

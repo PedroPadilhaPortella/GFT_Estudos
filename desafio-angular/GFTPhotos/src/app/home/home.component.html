@@ -1,0 +1,50 @@
+<!-- <div class="container  mx-auto">
+    <div class="m-5">
+        <h1><i class="fa fa-home fa-2x mx-3"></i> Home Page</h1>
+    </div>
+    <h3>Lorem ih3sum dolor sit amet consectetur adipisicing elit.Cum est, similique in accusantium vero ipsum nostrum nesciunt facilis, 
+    erum temporibus reprehenderit ratione, explicabo sapiente quia omnis doloribus iure aspernatur laborum.
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis perferendis, in, quasi aperiam ex quod atque odio iure,
+    nulla fuga nisi adipisci voluptatum voluptatem repellendus asperiores debitis sapiente sequi unde!</h3>
+</div> -->
+
+<main role="main">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-5">GFT Photos</h1>
+            <p>Angular application that consumes an api by an photo url and has a user registration table. Developed by
+                Pedro Portella as a challenge for the study of angular in GFT.</p>
+            <p>Shashin no URL de api o shōhi shi, yūzā tōroku tēburu o motsu Angular apurikēshon. GFT no kakudo no
+                kenkyū no tame no chōsen to shite Pedro Portella ni yotte kaihatsu sa remashita.</p>
+            <p><a [routerLink]="['/photos']" class="btn btn-primary btn-lg">View Photos &raquo;</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Home</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                    mollis euismod. Donec sed odio dui. </p>
+                <p><a [routerLink]="['/home']" class="btn btn-secondary">Go to Home Page &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Users</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna
+                    mollis euismod. Donec sed odio dui. </p>
+                <p><a [routerLink]="['/users']" class="btn btn-secondary">Go to Users Table &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Photos</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                    porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                    ut fermentum massa justo sit amet risus.</p>
+                <p><a [routerLink]="['/photos']" class="btn btn-secondary">Go to Photos &raquo;</a></p>
+            </div>
+        </div>
+        <hr>
+    </div>
+</main>
