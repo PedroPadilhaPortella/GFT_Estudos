@@ -1,0 +1,18 @@
+<div class="container mx-auto">
+    <div class="m-5">
+        <h1><i class="fa fa-camera fa-2x mx-3"></i> Fotos</h1>
+    </div>
+</div>
+
+<app-search (onTyping)="filter = $event" [value]="filter"></app-search>
+
+<app-card [photos]="photos  | filterByDescription: filter | paginate: { itemsPerPage: 24, currentPage: paginaAtual }"></app-card>
+
+<div class="py-5">
+    <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+</div>
+
+<ngx-spinner type="ball-clip-rotate-multiple">
+    <!-- <img src="../../../assets/angular.svg" alt=""> -->
+    <h2 class="mt-3" style="font-size: 20px; color: white; text-align: center;">Loading...</h2>
+</ngx-spinner>

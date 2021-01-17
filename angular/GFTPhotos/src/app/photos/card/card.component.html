@@ -1,0 +1,13 @@
+<div class="card-group mx-5">
+    <div  *ngFor="let photo of photos" class="col-2" DarkenOnHover brightness="70%">
+        <div class="card border-light text-center" style="width: 18rem;" (click)="openDialog(photo)">
+            <img [src]="photo.thumbnailUrl" [alt]="photo.title" class="img-thumbnail rounded mx-auto" width="150px"
+                height="150px">
+            <div class="card-body text-justify">
+                <div class="text-center p-1">
+                    <p>{{ photo.title}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

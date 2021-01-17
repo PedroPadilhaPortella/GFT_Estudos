@@ -7,6 +7,7 @@ import { FilterByDescriptionPipe } from './filter-by-description.pipe';
 import { DarkenOnHoverDirective } from './darken-on-hover.directive';
 import { SharedModule } from '../shared/shared.module';
 import { DialogComponent } from './dialog/dialog.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -15,6 +16,7 @@ import { DialogComponent } from './dialog/dialog.component';
         CommonModule,
         NgxPaginationModule,
         SharedModule,
+        NgxSpinnerModule
        
     ],
     declarations: [
