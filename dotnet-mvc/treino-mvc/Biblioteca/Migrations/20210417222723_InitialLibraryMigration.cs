@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Biblioteca.Migrations
 {
-    public partial class CreateLivros : Migration
+    public partial class InitialLibraryMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,9 @@ namespace Biblioteca.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Titulo = table.Column<string>(nullable: true),
-                    Autor = table.Column<string>(nullable: true),
+                    Titulo = table.Column<string>(nullable: false),
+                    Autor = table.Column<string>(nullable: false),
+                    Editora = table.Column<string>(nullable: false),
                     QuantidadeDePaginas = table.Column<int>(nullable: false),
                     QuantidadeDeExemplares = table.Column<int>(nullable: false)
                 },

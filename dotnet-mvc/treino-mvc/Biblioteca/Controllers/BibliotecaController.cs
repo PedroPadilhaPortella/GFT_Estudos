@@ -33,12 +33,13 @@ namespace Biblioteca.Controllers
         [HttpPost]
         public IActionResult Salvar(Livro livro)
         {
-            Livro livroDB = new Livro();
-            livroDB.Titulo = livro.Titulo;
-            livroDB.Autor = livro.Autor;
-            livroDB.QuantidadeDePaginas = livro.QuantidadeDePaginas;
-            livroDB.QuantidadeDeExemplares = livro.QuantidadeDeExemplares;
-            Database.Livros.Add(livroDB);
+        //     Livro livroDB = new Livro();
+        //     livroDB.Titulo = livro.Titulo;
+        //     livroDB.Autor = livro.Autor;
+        //     livroDB.Editora = livro.Editora;
+        //     livroDB.QuantidadeDePaginas = livro.QuantidadeDePaginas;
+        //     livroDB.QuantidadeDeExemplares = livro.QuantidadeDeExemplares;
+            Database.Livros.Add(livro);
             Database.SaveChanges();
 
             return RedirectToAction("Index", "Biblioteca");
@@ -50,13 +51,15 @@ namespace Biblioteca.Controllers
             return View(livro);
         }
 
-        public IActionResult Atualizar(Livro livroTemporario)
+        public IActionResult Atualizar(Livro livro)
         {
-            Livro livro = Database.Livros.First(lib => lib.Id == livroTemporario.Id);
-            livro.Titulo = livroTemporario.Titulo;
-            livro.Autor = livroTemporario.Autor;
-            livro.QuantidadeDePaginas = livroTemporario.QuantidadeDePaginas;
-            livro.QuantidadeDeExemplares = livroTemporario.QuantidadeDeExemplares;
+            // Livro livro = Database.Livros.First(lib => lib.Id == livroTemporario.Id);
+            // livro.Titulo = livroTemporario.Titulo;
+            // livro.Autor = livroTemporario.Autor;
+            // livro.Editora = livroTemporario.Editora;
+            // livro.QuantidadeDePaginas = livroTemporario.QuantidadeDePaginas;
+            // livro.QuantidadeDeExemplares = livroTemporario.QuantidadeDeExemplares;
+            Database.Livros.Update(livro);
             Database.SaveChanges();
 
             return RedirectToAction("Index", "Biblioteca");
@@ -77,10 +80,11 @@ namespace Biblioteca.Controllers
                 return View(); //DB has been populated!
             }
             Database.AddRange(
-                new Livro(1, "A Lenda dos Guardiões", "Kathryn Lasky", 230, 12),
-                new Livro(2, "Percy Jackson e o Ladrão de Raios", "Rick Riordan", 321, 34),
-                new Livro(3, "Clean Code", "Uncle Bob", 564, 3),
-                new Livro(4, "Rangers A Ordem dos Arqueiros", "John Flanagan", 300, 10)
+                new Livro(1, "A Lenda dos Guardiões", "Kathryn Lasky", "Fundamento", 230, 12),
+                new Livro(2, "Percy Jackson e o Ladrão de Raios", "Rick Riordan", "Intriseca", 321, 34),
+                new Livro(3, "Clean Code", "Uncle Bob", "Alta Books", 564, 3),
+                new Livro(4, "Rangers A Ordem dos Arqueiros", "John Flanagan", "Fundamento", 300, 10),
+                new Livro(5, "Game Of Thrones", "George R. R. Martin", "Companhia das Letras", 890, 15)
             );
             Database.SaveChanges();
             return View();

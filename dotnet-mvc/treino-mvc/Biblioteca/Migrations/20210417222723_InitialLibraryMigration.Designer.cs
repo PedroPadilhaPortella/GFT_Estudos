@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Biblioteca.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201022190248_CreateLivros")]
-    partial class CreateLivros
+    [Migration("20210417222723_InitialLibraryMigration")]
+    partial class InitialLibraryMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,6 +25,11 @@ namespace Biblioteca.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Autor")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Editora")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("QuantidadeDeExemplares")
@@ -34,6 +39,7 @@ namespace Biblioteca.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Titulo")
+                        .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");

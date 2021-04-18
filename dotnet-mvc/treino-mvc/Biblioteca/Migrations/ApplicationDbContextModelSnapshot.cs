@@ -26,6 +26,10 @@ namespace Biblioteca.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Editora")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("QuantidadeDeExemplares")
                         .HasColumnType("int");
 

@@ -1,18 +1,39 @@
 @model IEnumerable<Biblioteca.Models.Livro>
 
 <div class="content" style="text-align: center;">
-    <h2>Biblioteca do Portella</h2>
+    <h2 class="mb-2">Biblioteca do Portella</h2>
     <a href="/Home/Index" class="btn btn-primary">Voltar</a>
     <a href="/Biblioteca/Cadastrar" class="btn btn-success">Cadastrar Livros</a>
     <a href="/Biblioteca/SeedData" class="btn btn-success">SeedData</a>
     <hr>
-        @foreach (Livro livro in Model){
-            <p>Título: @livro.Titulo, Autor: @livro.Autor, Páginas: @livro.QuantidadeDePaginas, Exemplares Disponíveis: @livro.QuantidadeDeExemplares
-                <div>
-                    <a href="/Biblioteca/Editar/@livro.Id" class="btn btn-warning">Editar</a>
-                    <a href="/Biblioteca/Excluir/@livro.Id" class="btn btn-danger">Excluir</a>
-                </div>
-            </p>
-            <hr>
-        }
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">#</th>
+                <th scope="col">Título</th>
+                <th class="text-center" scope="col">Autor</th>
+                <th class="text-right" scope="col">Editora</th>
+                <th class="text-center" scope="col">Total de Páginas</th>
+                <th class="text-center" scope="col">Quantidade Total de Exemplares</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Livro livro in Model)
+            {
+                <tr>
+                    <td>@livro.Id</td>
+                    <td> @livro.Titulo</td>
+                    <td>@livro.Autor</td>
+                    <td>@livro.Editora</td>
+                    <td>@livro.QuantidadeDePaginas</td>
+                    <td>@livro.QuantidadeDeExemplares</td>
+                    <td>
+                        <a href="/Biblioteca/Editar/@livro.Id" class="btn btn-warning">Editar</a>
+                        <a href="/Biblioteca/Excluir/@livro.Id" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

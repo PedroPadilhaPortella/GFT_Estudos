@@ -1,6 +1,6 @@
 @model Biblioteca.Models.Livro;
 
-<div>
+<div class="container">
     <h2>Cadastro de Livros</h2>
     <a href="/Biblioteca/Index" class="btn btn-primary">Voltar</a>
 
@@ -8,6 +8,7 @@
         <input type="hidden"asp-for="Id">
         Título: <input type="text" class="form-control" asp-for="Titulo" placeholder="Título">
         Autor: <input type="text" class="form-control" asp-for="Autor" placeholder="Autor">
+        Editora: <input type="text" class="form-control" asp-for="Editora" placeholder="Editora">
         Total de Páginas: <input type="number" class="form-control" asp-for="QuantidadeDePaginas">
         Total de Exemplares Disponíveis: <input type="number" class="form-control" asp-for="QuantidadeDeExemplares">
         <hr>
