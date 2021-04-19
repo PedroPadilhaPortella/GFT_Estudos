@@ -3,8 +3,8 @@
 <div class="content" style="text-align: center;">
     <h2 class="mb-2">Biblioteca do Portella</h2>
     <a href="/Home/Index" class="btn btn-primary">Voltar</a>
-    <a href="/Biblioteca/Cadastrar" class="btn btn-success">Cadastrar Livros</a>
-    <a href="/Biblioteca/SeedData" class="btn btn-success">SeedData</a>
+    <a asp-controller="Biblioteca" asp-action="Cadastrar" class="btn btn-success">Cadastrar Livros</a>
+    <a asp-controller="Biblioteca" asp-action="SeedData" data-toggle="modal" data-target="#SeedData" class="btn btn-success">SeedData</a>
     <hr>
     <table class="table table-bordered">
         <thead>
@@ -30,10 +30,51 @@
                     <td>@livro.QuantidadeDeExemplares</td>
                     <td>
                         <a href="/Biblioteca/Editar/@livro.Id" class="btn btn-warning">Editar</a>
-                        <a href="/Biblioteca/Excluir/@livro.Id" class="btn btn-danger">Excluir</a>
+                        <button data-toggle="modal" data-target="#ExluirLivro" class="btn btn-danger">Excluir</button>
                     </td>
                 </tr>
+
+                <!-- The Modal -->
+                <div class="modal" id="ExluirLivro">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                        <div class="modal-header">
+                                <h4 class="modal-title">Excluir Livro</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                        <div class="modal-body">
+                                <p>Tem certeza que deseja excluir este Livro?</p>
+                            </div>
+                            <!-- Modal footer -->
+                        <div class="modal-footer">
+                                <a href="/Biblioteca/Excluir/@livro.Id" class="btn btn-danger"
+                                id="ExcluirLivroBtn">Excluir</a>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
         </tbody>
     </table>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="SeedData">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-header">
+                <h4>Dados Semeados com Sucesso,</h4>
+                <p>clique em Ok para Confirmar!</p>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <a asp-controller="Biblioteca" asp-action="SeedData" class="btn btn-primary text-center">Ok</a>
+            </div>
+        </div>
+    </div>
 </div>

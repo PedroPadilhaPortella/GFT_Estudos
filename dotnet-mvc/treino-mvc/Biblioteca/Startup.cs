@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Biblioteca.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +22,8 @@ namespace Biblioteca
         {
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<SeedingService>(); //servico de povoamento de dados
+            services.AddScoped<SeedingService>(); // Servico de povoamento de dados
+            services.AddScoped<ILivroRepository, LivroRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
