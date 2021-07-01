@@ -7,7 +7,7 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+            // int n = int.Parse(Console.ReadLine());
 
             string[] data = Console.ReadLine().Split();
 
