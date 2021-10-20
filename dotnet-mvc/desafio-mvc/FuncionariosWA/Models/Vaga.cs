@@ -29,6 +29,5 @@ namespace FuncionariosWA.Models
             Cargo = cargo;
             Status = status;
         }
-
     }
 }
